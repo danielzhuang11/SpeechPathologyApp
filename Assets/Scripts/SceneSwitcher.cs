@@ -7,6 +7,16 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("SelectDifficulty");
     }
+    public void GotoGameSelectorScene()
+    {
+        SceneManager.LoadScene("SelectGame");
+    }
+
+    public void GotoGameScrollerScene()
+    {
+        SceneManager.LoadScene("gameScroller");
+    }
+
 
     public void GotoMenuScene()
     {

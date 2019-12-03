@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/SelectDifficulty.unity
+    guid: 5b0e1d958db1e8a4e960e13777782c57
+  - enabled: 1
+    path: Assets/Scenes/SelectGame.unity
+    guid: 47b767440558c0b49a02ac881c1d39ca
+  - enabled: 1
+    path: Assets/Scenes/gameScroller.unity
+    guid: f56ab37636168c24aa4a94f258b16486
   m_configObjects: {}
