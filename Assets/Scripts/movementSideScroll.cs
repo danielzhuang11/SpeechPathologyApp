@@ -12,34 +12,21 @@ public class movementSideScroll : MonoBehaviour
     public LayerMask whatIsGround;
     private bool grounded;
 
-    // Use this for initialization
-    void Start()
-    {
+    
+
+    void Jump()
+    {     
+      GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
     }
 
-    void fixedUpdate()
-    {
-
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
-        }
-
-        if (Input.GetKey(KeyCode.D))
+    void forward()
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.A))
+       void backward()
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+           GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
 
     }
-}
