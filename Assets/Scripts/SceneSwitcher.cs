@@ -17,6 +17,11 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene("gameScroller");
     }
 
+    public void GotoFlashcardScene()
+    {
+        SceneManager.LoadScene("Flashcards");
+    }
+
 
     public void GotoMenuScene()
     {

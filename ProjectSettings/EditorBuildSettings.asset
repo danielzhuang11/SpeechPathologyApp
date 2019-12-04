@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/gameScroller.unity
     guid: f56ab37636168c24aa4a94f258b16486
+  - enabled: 1
+    path: Assets/Scenes/Flashcards.unity
+    guid: c49c5f6e8b3706547b545077edb68748
   m_configObjects: {}
