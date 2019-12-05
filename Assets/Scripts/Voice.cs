@@ -7,6 +7,8 @@ using UnityEngine.Windows.Speech;
 public class Voice : MonoBehaviour
 {
     public string[] keywords = new string[] { "up", "down", "left", "right" };
+    public string correct;
+
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
