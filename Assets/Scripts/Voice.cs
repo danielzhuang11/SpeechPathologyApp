@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
+using System;
 
 public class Voice : MonoBehaviour
 {
-    public string[] keywords = new string[] { "up", "down", "left", "right" };
+    public string[] badwords;
     public string correct;
 
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
@@ -16,13 +17,19 @@ public class Voice : MonoBehaviour
     public Image target;
 
     protected PhraseRecognizer recognizer;
-    protected string word = "right";
+    protected string word = "";
 
     private void Start()
     {
-        if (keywords != null)
+        string[] t = new[] { correct };
+
+        string[] z = new String[badwords.Length + t.Length];
+        badwords.CopyTo(z, 0);
+        t.CopyTo(z, badwords.Length);
+
+        if (z != null)
         {
-            recognizer = new KeywordRecognizer(keywords, confidence);
+            recognizer = new KeywordRecognizer(z, confidence);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
             recognizer.Start();
         }
@@ -31,7 +38,6 @@ public class Voice : MonoBehaviour
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         word = args.text;
-        results.text = "You said: <b>" + word + "</b>";
     }
 
     private void Update()
@@ -39,21 +45,13 @@ public class Voice : MonoBehaviour
         var x = target.transform.position.x;
         var y = target.transform.position.y;
 
-        switch (word)
-        {
-            case "up":
-                y += speed;
-                break;
-            case "down":
-                y -= speed;
-                break;
-            case "left":
-                x -= speed;
-                break;
-            case "right":
-                x += speed;
-                break;
+
+        if (word == correct)
+        { 
+        results.text = "You said: <b>" + correct + "</b>" + "correctly!";
+            Setup.pts += 100;
         }
+        
 
         target.transform.position = new Vector3(x, y, 0);
     }
