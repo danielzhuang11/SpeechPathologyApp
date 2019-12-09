@@ -25,6 +25,6 @@ public class SceneSwitcher : MonoBehaviour
 
     public void GotoMenuScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
