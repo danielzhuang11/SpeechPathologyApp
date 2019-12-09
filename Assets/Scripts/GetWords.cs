@@ -72,11 +72,11 @@ public class GetWords : MonoBehaviour
 
         if (word == correct && updateOn == true)
         {
-            results.text = "You said: <b>" + correct + "</b>" + "correctly!";
+            results.text = "You said: <b>" + correct + "</b>" + " correctly!";
             Setup.pts += 100;
             StopCoroutine("updateOff");
             recognizer.Stop();
-            SceneManager.LoadScene("Flashcards");
+           // SceneManager.LoadScene("Flashcards");
             
         }
 
@@ -88,7 +88,7 @@ public class GetWords : MonoBehaviour
         updateOn = false;
         gOver.gameObject.SetActive(true);
         recognizer.Stop();
-        SceneManager.LoadScene("Flashcards");
+     //   SceneManager.LoadScene("Flashcards");
     }
 
     private void OnApplicationQuit()

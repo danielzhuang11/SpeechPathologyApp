@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -455, y: -220}
+  m_AnchoredPosition: {x: -271, y: -220}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114883145
@@ -653,7 +653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -448, y: 217}
+  m_AnchoredPosition: {x: -271, y: 219}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &767918530
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   image: {fileID: 1751018218}
   newSprite: {fileID: 21300000, guid: a5887b0c5d5426f40990bd7691ef04fe, type: 3}
   gOver: {fileID: 124692407}
-  time: 5
+  time: 10
   badwords:
   - radder
   correct: ladder
