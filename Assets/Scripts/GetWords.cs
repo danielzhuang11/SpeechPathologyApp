@@ -12,8 +12,8 @@ public class GetWords : MonoBehaviour
     public Sprite newSprite;
     public Image gOver;
     public int time;
-
-    public string[] badwords;
+    public static TermData.Terms termData;
+  //  public string[] badwords;
     public string correct;
 
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
@@ -27,8 +27,7 @@ public class GetWords : MonoBehaviour
 
     public bool updateOn = true;
 
-    // function to get stuff from sheet
-    void getFromSheet(string diff, string group)
+    void getRandFromCSV(string diff, string group)
     {
 
     }
@@ -42,11 +41,11 @@ public class GetWords : MonoBehaviour
         image.sprite = newSprite; 
         string[] t = new[] { correct };
 
-        string[] z = new string[badwords.Length + t.Length];
-        badwords.CopyTo(z, 0);
-        t.CopyTo(z, badwords.Length);
+      //  string[] z = new string[badwords.Length + t.Length];
+//badwords.CopyTo(z, 0);
+      //  t.CopyTo(z, badwords.Length);
         StartCoroutine(updateOff());
-        if (z != null)
+        if (word != null)
         {
             recognizer = new KeywordRecognizer(z, confidence);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
@@ -62,13 +61,13 @@ public class GetWords : MonoBehaviour
     private void Update()
     {
 
-        for (int i = 0; i < badwords.Length; i++)
-        {
-            if (word == badwords[i])
-            {
-             
-            }
-        }
+        //for (int i = 0; i < badwords.length; i++)
+        //{
+        //    if (word == badwords[i])
+        //    {
+
+        //    }
+        //}
 
         if (word == correct && updateOn == true)
         {
