@@ -12,17 +12,13 @@ public static class TermData
         public Dictionary<string, int> languageIndicies;
 
         // < group, [word, url] >
-        public Dictionary<string, string[]> termEasy;
+        public Dictionary<string, string[]> terms;
 
-        public Dictionary<string, string[]> termMedium;
-        public Dictionary<string, string[]> termHard;
 
         public Terms()
         {
             languageIndicies = new Dictionary<string, int>();
-            termEasy = new Dictionary<string, string[]>();
-            termMedium = new Dictionary<string, string[]>();
-            termEasy = new Dictionary<string, string[]>();
+            terms = new Dictionary<string, string[]>();
         }
     }
 }

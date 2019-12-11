@@ -52,7 +52,7 @@ public class Loader : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        Manager.instance.translator.termData = new TermData.Terms();
+        GetWords.termData = new TermData.Terms();
 
         // Line level
         int currLineIndex = 0;
@@ -146,45 +146,57 @@ public class Loader : MonoBehaviour
     private void ProcessLineFromCSV(List<string> currLineElements, int currLineIndex)
     {
 
+
         // This line contains the column headers, telling us which languages are in which column
         if (currLineIndex == 0)
         {
-            languages = new List<string>();
-            for (int columnIndex = 0; columnIndex < currLineElements.Count; columnIndex++)
-            {
-                string currLanguage = currLineElements[columnIndex];
-                Assert.IsTrue((columnIndex != 0 || currLanguage == "English"), "First column first row was:" + currLanguage);
-                Assert.IsFalse(Manager.instance.translator.termData.languageIndicies.ContainsKey(currLanguage));
-                Manager.instance.translator.termData.languageIndicies.Add(currLanguage, currLineIndex);
-                languages.Add(currLanguage);
-            }
-            UnityEngine.Assertions.Assert.IsFalse(languages.Count == 0);
+            //languages = new List<string>();
+            //for (int columnIndex = 0; columnIndex < currLineElements.Count; columnIndex++)
+            //{
+            //    string currLanguage = currLineElements[columnIndex];
+            //    Assert.IsTrue((columnIndex != 0 || currLanguage == "English"), "First column first row was:" + currLanguage);
+            //    Assert.IsFalse(Manager.instance.translator.termData.languageIndicies.ContainsKey(currLanguage));
+            //    Manager.instance.translator.termData.languageIndicies.Add(currLanguage, currLineIndex);
+            //    languages.Add(currLanguage);
+            //}
+            //UnityEngine.Assertions.Assert.IsFalse(languages.Count == 0);
         }
         // This is a normal node
         else if (currLineElements.Count > 1)
         {
             string word = null;
-            string[] nonEnglishSpellings = new string[2];
+            string[] terms = new string[3];
 
             for (int columnIndex = 0; columnIndex < currLineElements.Count; columnIndex++)
             {
                 string currentTerm = currLineElements[columnIndex];
                 if (columnIndex == 0)
                 {
-                    Assert.IsFalse(GetWords.termData.termEasy.ContainsKey(currentTerm), "Saw this term twice: " + currentTerm);
+                  //  Assert.IsFalse(GetWords.termData.terms.ContainsKey(currentTerm), "Saw this term twice: " + currentTerm);
                     word = currentTerm;
                 }
                 else
                 {
-                    nonEnglishSpellings[columnIndex - 1] = currentTerm;
+                    terms[columnIndex - 1] = currentTerm;
                 }
             }
-            GetWords.termData.termEasy[word] = nonEnglishSpellings;
+            GetWords.termData.terms[word] = terms;
+          
             //print( "englishSpelling: >" + englishSpelling + "<" );
         }
         else
         {
             Debug.LogError("Database line did not fall into one of the expected categories.");
+        }
+
+        foreach (KeyValuePair<string, string[]> kvp in GetWords.termData.terms)
+        {
+
+            Debug.Log(kvp.Key);
+            for(int i=0; i<3; i++)
+            {
+                Debug.Log(kvp.Value[i]);
+            }
         }
     }
 

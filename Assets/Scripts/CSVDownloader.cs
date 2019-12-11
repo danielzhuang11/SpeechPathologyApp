@@ -7,7 +7,6 @@ public static class CSVDownloader
 {
     private const string k_googleSheetDocID = "16hUFM5vrmSGMeb5hK3v0sFZpmMMOWpsEy9__-Mm78BE";
     private const string url = "https://docs.google.com/spreadsheets/d/" + k_googleSheetDocID + "/export?format=csv";
-    private string[] gid;
     internal static IEnumerator DownloadData(System.Action<string> onCompleted)
     {
         yield return new WaitForEndOfFrame();

@@ -13,13 +13,15 @@ public class GetWords : MonoBehaviour
     public Image gOver;
     public int time;
     public static TermData.Terms termData;
-  //  public string[] badwords;
-    public string correct;
 
+    public string correct;
+    public string difficulty;
+    public string group;
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
     public TextMeshProUGUI results;
+
 
 
     protected PhraseRecognizer recognizer;
@@ -29,7 +31,16 @@ public class GetWords : MonoBehaviour
 
     void getRandFromCSV(string diff, string group)
     {
+        GameObject.Find("GameController").GetComponent<Loader>().Load();
 
+
+        foreach (KeyValuePair<string, string[]> kvp in termData.terms)
+        {
+            
+            Debug.Log("Key = {0}, Value = {1}" + kvp.Key+ kvp.Value);
+        }
+      //  switch 
+      //  termData.terms
     }
     //setup
 
@@ -37,17 +48,17 @@ public class GetWords : MonoBehaviour
 
     private void Start()
     {
+        
+        getRandFromCSV(difficulty, group);
+
         gOver.gameObject.SetActive(false);
         image.sprite = newSprite; 
         string[] t = new[] { correct };
 
-      //  string[] z = new string[badwords.Length + t.Length];
-//badwords.CopyTo(z, 0);
-      //  t.CopyTo(z, badwords.Length);
         StartCoroutine(updateOff());
         if (word != null)
         {
-            recognizer = new KeywordRecognizer(z, confidence);
+            recognizer = new KeywordRecognizer(t, confidence);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
             recognizer.Start();
         }
