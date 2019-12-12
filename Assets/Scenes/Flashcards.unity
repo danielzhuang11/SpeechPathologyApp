@@ -1293,7 +1293,7 @@ MonoBehaviour:
   time: 10
   badwords:
   - radder
-  correct: ladder
+  correct: no
   confidence: 1
   speed: 1
   results: {fileID: 1269805281}
