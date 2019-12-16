@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 258564118}
   - component: {fileID: 258564117}
   - component: {fileID: 258564119}
+  - component: {fileID: 258564120}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -332,6 +333,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ptsD: {fileID: 114923066}
+--- !u!114 &258564120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258564116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a4690cf0c649942ac9c1697e8ba9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447574261
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +428,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 258564117}
-        m_MethodName: GotoGameSelectorScene
+        m_MethodName: GotoDifficultyScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -16,12 +16,14 @@ public class Setup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ptsD.text = "Points: " + pts;
+
+        this.GetComponent<Loader>().Load();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ptsD.text = "Points: " + pts;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
+//using UnityStandardAssets.CrossPlatformInput;
 
 public class move : MonoBehaviour
 {
@@ -16,8 +16,8 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dirX = CrossPlatformInput.GetAxis("Horizontal");
-        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        //dirX = CrossPlatformInput.GetAxis("Horizontal");
+        //if (CrossPlatformInputManager.GetButtonDown("Jump"))
             DoJump();
     }
     void FixedUpdate()
