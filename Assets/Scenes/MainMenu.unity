@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 258564118}
   - component: {fileID: 258564117}
   - component: {fileID: 258564119}
+  - component: {fileID: 258564120}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -332,6 +333,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ptsD: {fileID: 114923066}
+--- !u!114 &258564120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258564116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a4690cf0c649942ac9c1697e8ba9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447574261
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +428,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 258564117}
-        m_MethodName: GotoGameSelectorScene
+        m_MethodName: GotoDifficultyScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -933,6 +946,7 @@ GameObject:
   - component: {fileID: 1063755530}
   - component: {fileID: 1063755529}
   - component: {fileID: 1063755528}
+  - component: {fileID: 1063755531}
   m_Layer: 5
   m_Name: OptionsBtn (1)
   m_TagString: Untagged
@@ -1002,7 +1016,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1063755529}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1063755531}
+        m_MethodName: GotoRewardScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1063755529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,6 +1064,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063755526}
   m_CullTransparentMesh: 0
+--- !u!114 &1063755531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063755526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c47411c2aa7b3541bc525376b71812d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1070632192
 GameObject:
   m_ObjectHideFlags: 0

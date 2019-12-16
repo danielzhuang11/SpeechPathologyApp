@@ -1,32 +1,94 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class movementSideScroll : MonoBehaviour
 {
+    public Animator anim;
+   
+    public float moveSpeed = 20f;
+    public FixedJoystick joystick;
+    float horizontalMove = 0f;
+    public bool isGrounded = true;
+    public float jumpForce = 5f;
+    public float healthMax = 5f;
+    public Transform player;
+    public Image healthBar;
+    private float health;
+    public GameObject GameOver;
+    public GameObject playerz;
+    private int coin = 0;
+    public Text coinTxt;
 
-    public float moveSpeed;
-    public float jumpHeight;
+    void Start()
+    {
+        health = healthMax;
+    }
+    void FixedUpdate()
+    {
+        if(player.position.y < -30)
+        {
+            health = 0;
+            healthBar.fillAmount = 0;
+            globalScore.score += coin;
+        }
+        if(health <= 0)
+        {
+            GameOver.SetActive(true);
+            playerz.SetActive(false);
 
-    public Transform groundCheck;
-    public float groundCheckRadius;
-    public LayerMask whatIsGround;
-    private bool grounded;
+        }
+        if (joystick.Horizontal >= 0.2f)
+        {
+            horizontalMove = moveSpeed;
+             anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            anim.SetBool("isJumping", false);
+        }
+        else if (joystick.Horizontal <= -0.2f)
+        {
+            horizontalMove = -moveSpeed;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+            anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            anim.SetBool("isJumping", false);
 
-    
-
+        }
+        else
+        {
+            horizontalMove = 0f;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+            anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            anim.SetBool("isJumping", false);
+        }
+        if(joystick.Vertical >= 0.7f && isGrounded == true)
+        {
+            Jump();
+           anim.SetBool("isJumping", true);
+        }
+       
+    }
     void Jump()
-    {     
-      GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+    {
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
     }
-
-    void forward()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Health" && health < healthMax)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            health += 1;
+            healthBar.fillAmount = health / healthMax;
         }
-
-       void backward()
+        if (collision.collider.tag == "Coin")
         {
-           GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            coin += 1;
+            coinTxt.text = "Coin: " + coin;
         }
-
+        if (collision.collider.tag == "Enemy")
+        {
+            health -= 1;
+            healthBar.fillAmount = health / healthMax;
+        }
     }
+}

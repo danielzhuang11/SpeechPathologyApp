@@ -6,101 +6,88 @@ using UnityEngine.Windows.Speech;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using System.Timers;
 public class GetWords : MonoBehaviour
 {
     public Image image;
-    public Sprite newSprite;
     public Image gOver;
     public int time;
-    public static TermData.Terms termData;
+    
 
     public string correct;
-    public string difficulty;
-    public string group;
+    private string difficulty;
+    private string group;
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
     public TextMeshProUGUI results;
 
 
-
     protected PhraseRecognizer recognizer;
     protected string word = "";
 
     public bool updateOn = true;
+    private static System.Timers.Timer aTimer;
 
-    void getRandFromCSV(string diff, string group)
+    public void newWord()
     {
-        GameObject.Find("GameController").GetComponent<Loader>().Load();
+        updateOn = true;
+        string chosen = WordBase.getRandFromCSV(group,difficulty);
 
+        StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
 
-        foreach (KeyValuePair<string, string[]> kvp in termData.terms)
-        {
-            
-            Debug.Log("Key = {0}, Value = {1}" + kvp.Key+ kvp.Value);
-        }
-      //  switch 
-      //  termData.terms
-    }
-    //setup
-
-    
-
-    private void Start()
-    {
-        
-        getRandFromCSV(difficulty, group);
-
-        gOver.gameObject.SetActive(false);
-        image.sprite = newSprite; 
+        correct = chosen;
         string[] t = new[] { correct };
 
-        StartCoroutine(updateOff());
         if (word != null)
         {
+            gOver.gameObject.SetActive(false);
             recognizer = new KeywordRecognizer(t, confidence);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
             recognizer.Start();
         }
     }
 
+    private void Start()
+    {
+        gOver.gameObject.SetActive(false);
+        difficulty = DropdownFill.difficulty;
+        group = DropdownFill.group;
+    }
+
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         word = args.text;
     }
-
+   
     private void Update()
     {
-
-        //for (int i = 0; i < badwords.length; i++)
-        //{
-        //    if (word == badwords[i])
-        //    {
-
-        //    }
-        //}
-
+        
         if (word == correct && updateOn == true)
         {
+           
             results.text = "You said: <b>" + correct + "</b>" + " correctly!";
+           
             Setup.pts += 100;
-            StopCoroutine("updateOff");
-            recognizer.Stop();
-           // SceneManager.LoadScene("Flashcards");
             
-        }
 
+            recognizer.Stop();
+            updateOn = false;
+           // SceneManager.LoadScene("Flashcards");
+        }
     }
 
-    IEnumerator updateOff()
+   
+    private  void outOfTime()
     {
-        yield return new WaitForSeconds(time);
         updateOn = false;
+        
         gOver.gameObject.SetActive(true);
         recognizer.Stop();
-     //   SceneManager.LoadScene("Flashcards");
+      
+        //   SceneManager.LoadScene("Flashcards");
     }
-
     private void OnApplicationQuit()
     {
         if (recognizer != null && recognizer.IsRunning)

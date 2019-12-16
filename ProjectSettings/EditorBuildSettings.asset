@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Flashcards.unity
     guid: c49c5f6e8b3706547b545077edb68748
+  - enabled: 1
+    path: Assets/Scenes/spaceGame.unity
+    guid: 90f566879c58f3a42b25e38fa6f5fc07
+  - enabled: 1
+    path: Assets/Scenes/rewards.unity
+    guid: 095a0a1eb6636dd4b99b19772653b73b
   m_configObjects: {}

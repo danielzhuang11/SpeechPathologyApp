@@ -6,13 +6,7 @@ using UnityEngine.Assertions;
 public class Loader : MonoBehaviour
 {
 
-    private int progress = 0;
-    List<string> languages = new List<string>();
-
-    void Initialize()
-    {
-
-    }
+  
 
     public void Load()
     {
@@ -52,7 +46,7 @@ public class Loader : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        GetWords.termData = new TermData.Terms();
+        WordBase.termData = new TermData.Terms();
 
         // Line level
         int currLineIndex = 0;
@@ -63,33 +57,32 @@ public class Loader : MonoBehaviour
         // Entry level
         string currEntry = "";
         int currCharIndex = 0;
-        bool currEntryContainedQuote = false;
+      
         List<string> currLineEntries = new List<string>();
 
         // "\r\n" means end of line and should be only occurence of '\r' (unless on macOS/iOS in which case lines ends with just \n)
         char lineEnding = IsIOS() ? '\n' : '\r';
         int lineEndingLength = IsIOS() ? 1 : 2;
-
+        data += "\r\n";
         while (currCharIndex < data.Length)
         {
-            if (!inQuote && (data[currCharIndex] == lineEnding))
+            if ((data[currCharIndex] == lineEnding))
             {
                 // Skip the line ending
                 currCharIndex += lineEndingLength;
 
                 // Wrap up the last entry
                 // If we were in a quote, trim bordering quotation marks
-                if (currEntryContainedQuote)
-                {
-                    currEntry = currEntry.Substring(1, currEntry.Length - 2);
-                }
+               
 
                 currLineEntries.Add(currEntry);
                 currEntry = "";
-                currEntryContainedQuote = false;
+            
 
                 // Line ended
+              
                 ProcessLineFromCSV(currLineEntries, currLineIndex);
+
                 currLineIndex++;
                 currLineEntries = new List<string>();
 
@@ -102,12 +95,7 @@ public class Loader : MonoBehaviour
             }
             else
             {
-                if (data[currCharIndex] == '"')
-                {
-                    inQuote = !inQuote;
-                    currEntryContainedQuote = true;
-                }
-
+               
                 // Entry level stuff
                 {
                     if (data[currCharIndex] == ',')
@@ -119,14 +107,11 @@ public class Loader : MonoBehaviour
                         else
                         {
                             // If we were in a quote, trim bordering quotation marks
-                            if (currEntryContainedQuote)
-                            {
-                                currEntry = currEntry.Substring(1, currEntry.Length - 2);
-                            }
+                            
 
                             currLineEntries.Add(currEntry);
                             currEntry = "";
-                            currEntryContainedQuote = false;
+                           
                         }
                     }
                     else
@@ -136,14 +121,12 @@ public class Loader : MonoBehaviour
                 }
                 currCharIndex++;
             }
-
-            progress = (int)((float)currCharIndex / data.Length * 100.0f);
         }
 
         onCompleted(null);
     }
 
-    private void ProcessLineFromCSV(List<string> currLineElements, int currLineIndex)
+    private static void ProcessLineFromCSV(List<string> currLineElements, int currLineIndex)
     {
 
 
@@ -172,7 +155,7 @@ public class Loader : MonoBehaviour
                 string currentTerm = currLineElements[columnIndex];
                 if (columnIndex == 0)
                 {
-                  //  Assert.IsFalse(GetWords.termData.terms.ContainsKey(currentTerm), "Saw this term twice: " + currentTerm);
+                  //  Assert.IsFalse(WordBase.termData.terms.ContainsKey(currentTerm), "Saw this term twice: " + currentTerm);
                     word = currentTerm;
                 }
                 else
@@ -180,7 +163,7 @@ public class Loader : MonoBehaviour
                     terms[columnIndex - 1] = currentTerm;
                 }
             }
-            GetWords.termData.terms[word] = terms;
+            WordBase.termData.terms[word] = terms;
           
             //print( "englishSpelling: >" + englishSpelling + "<" );
         }
@@ -189,15 +172,7 @@ public class Loader : MonoBehaviour
             Debug.LogError("Database line did not fall into one of the expected categories.");
         }
 
-        foreach (KeyValuePair<string, string[]> kvp in GetWords.termData.terms)
-        {
-
-            Debug.Log(kvp.Key);
-            for(int i=0; i<3; i++)
-            {
-                Debug.Log(kvp.Value[i]);
-            }
-        }
+      
     }
 
     public static bool IsIOS()
