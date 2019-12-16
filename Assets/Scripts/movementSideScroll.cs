@@ -15,7 +15,10 @@ public class movementSideScroll : MonoBehaviour
     public Transform player;
     public Image healthBar;
     private float health;
-
+    public GameObject GameOver;
+    public GameObject playerz;
+    private int coin = 0;
+    public Text coinTxt;
 
     void Start()
     {
@@ -27,10 +30,13 @@ public class movementSideScroll : MonoBehaviour
         {
             health = 0;
             healthBar.fillAmount = 0;
+            globalScore.score += coin;
         }
         if(health <= 0)
         {
-            //gameOver
+            GameOver.SetActive(true);
+            playerz.SetActive(false);
+
         }
         if (joystick.Horizontal >= 0.2f)
         {
@@ -69,10 +75,15 @@ public class movementSideScroll : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Health")
+        if (collision.collider.tag == "Health" && health < healthMax)
         {
             health += 1;
             healthBar.fillAmount = health / healthMax;
+        }
+        if (collision.collider.tag == "Coin")
+        {
+            coin += 1;
+            coinTxt.text = "Coin: " + coin;
         }
         if (collision.collider.tag == "Enemy")
         {

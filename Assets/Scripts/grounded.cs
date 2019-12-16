@@ -25,7 +25,6 @@ public class grounded : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("not collide");
         if (collision.collider.tag == "Ground")
         {
             Player.GetComponent<movementSideScroll>().isGrounded = false;

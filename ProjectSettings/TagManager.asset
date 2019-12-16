@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Enemy
   - Health
+  - Enemy
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,7 @@ TagManager:
   - UI
   - 
   - 
-<<<<<<< HEAD
-  - Player
+  - 
   - 
   - 
   - 
