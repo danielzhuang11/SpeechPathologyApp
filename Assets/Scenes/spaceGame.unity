@@ -311,7 +311,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -999
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -1592,6 +1592,11 @@ PrefabInstance:
       propertyPath: GameOver
       value: 
       objectReference: {fileID: 797098572}
+    - target: {fileID: 222928645239896407, guid: 269f4f9641648994f849cbbbb515fae5,
+        type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 1392970019}
     - target: {fileID: 309438322527610501, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
       propertyPath: m_Name
@@ -1652,7 +1657,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 309438322527610496, guid: 269f4f9641648994f849cbbbb515fae5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 269f4f9641648994f849cbbbb515fae5, type: 3}
 --- !u!114 &4456293889078962932
 MonoBehaviour:

@@ -29,6 +29,7 @@ public class spaceMove : MonoBehaviour
         {
             GameOver.SetActive(true);
             playerz.SetActive(false);
+            globalScore.score += scoreSpa;
 
         }
         if (joystick.Horizontal >= 0.2f)
