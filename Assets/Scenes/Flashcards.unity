@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -271, y: -220}
+  m_AnchoredPosition: {x: -230, y: -140}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114883145
@@ -664,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -271, y: 219}
+  m_AnchoredPosition: {x: -240, y: 183.15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &767918530
@@ -1299,12 +1299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1751018218}
-  newSprite: {fileID: 21300000, guid: a5887b0c5d5426f40990bd7691ef04fe, type: 3}
   gOver: {fileID: 124692407}
   time: 10
   correct: no
-  difficulty: Any
-  group: Any
   confidence: 1
   speed: 1
   results: {fileID: 1269805281}

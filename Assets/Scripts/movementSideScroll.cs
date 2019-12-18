@@ -19,6 +19,8 @@ public class movementSideScroll : MonoBehaviour
     public GameObject playerz;
     private int coin = 0;
     public Text coinTxt;
+    public GameObject mi;
+    public GameObject tu;
 
     void Start()
     {
@@ -83,6 +85,9 @@ public class movementSideScroll : MonoBehaviour
         if (collision.collider.tag == "Coin")
         {
             coin += 1;
+            tu.SetActive(true);
+            mi.SetActive(false);
+            playerz.SetActive(false);
             coinTxt.text = "Coin: " + coin;
         }
         if (collision.collider.tag == "Enemy")

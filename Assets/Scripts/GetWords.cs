@@ -13,16 +13,16 @@ public class GetWords : MonoBehaviour
     public Image image;
     public Image gOver;
     public int time;
-    
 
     public string correct;
     private string difficulty;
     private string group;
-    public ConfidenceLevel confidence = ConfidenceLevel.Medium;
+    public ConfidenceLevel confidence = ConfidenceLevel.Low;
     public float speed = 1;
-
+    public GameObject player;
     public TextMeshProUGUI results;
-
+    public GameObject thi;
+    public GameObject norm;
 
     protected PhraseRecognizer recognizer;
     protected string word = "";
@@ -70,6 +70,9 @@ public class GetWords : MonoBehaviour
             results.text = "You said: <b>" + correct + "</b>" + " correctly!";
            
             Setup.pts += 100;
+            player.SetActive(true);
+            norm.SetActive(true);
+            thi.SetActive(false);
             
 
             recognizer.Stop();
