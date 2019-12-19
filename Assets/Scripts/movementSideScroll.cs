@@ -17,13 +17,14 @@ public class movementSideScroll : MonoBehaviour
     private float health;
     public GameObject GameOver;
     public GameObject playerz;
-    private int coin = 0;
     public Text coinTxt;
     public GameObject mi;
-    public GameObject tu;
+    public Transform gamPos;
+    public GameObject ui;
 
     void Start()
     {
+        globalScore.coins = 0;
         health = healthMax;
     }
     void FixedUpdate()
@@ -32,16 +33,17 @@ public class movementSideScroll : MonoBehaviour
         {
             health = 0;
             healthBar.fillAmount = 0;
-            globalScore.score += coin;
+          
         }
         if(health <= 0)
         {
             GameOver.SetActive(true);
             playerz.SetActive(false);
-
+            globalScore.coins = 0;
         }
         if (joystick.Horizontal >= 0.2f)
         {
+            coinTxt.text = "Coin: " + globalScore.coins;
             horizontalMove = moveSpeed;
              anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
@@ -50,6 +52,7 @@ public class movementSideScroll : MonoBehaviour
         }
         else if (joystick.Horizontal <= -0.2f)
         {
+            coinTxt.text = "Coin: " + globalScore.coins;
             horizontalMove = -moveSpeed;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             transform.localScale = new Vector2(-1, transform.localScale.y);
@@ -59,6 +62,7 @@ public class movementSideScroll : MonoBehaviour
         }
         else
         {
+            coinTxt.text = "Coin: " + globalScore.coins;
             horizontalMove = 0f;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -84,11 +88,10 @@ public class movementSideScroll : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-            coin += 1;
-            tu.SetActive(true);
+            playerz.SetActive(false);
             mi.SetActive(false);
             playerz.SetActive(false);
-            coinTxt.text = "Coin: " + coin;
+            ui.SetActive(true);
         }
         if (collision.collider.tag == "Enemy")
         {

@@ -9,7 +9,7 @@ public class appa : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            apper.SetActive(false);
+            Destroy(apper);
         }
     }
 }

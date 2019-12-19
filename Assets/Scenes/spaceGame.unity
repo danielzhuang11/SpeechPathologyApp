@@ -371,10 +371,10 @@ MonoBehaviour:
   correct: no
   confidence: 2
   speed: 1
-  player: {fileID: 822452132}
   results: {fileID: 1070458362}
   thi: {fileID: 490268822}
-  norm: {fileID: 1205559348}
+  mi: {fileID: 0}
+  player: {fileID: 822452132}
   updateOn: 1
 --- !u!114 &232140702
 MonoBehaviour:
@@ -2711,11 +2711,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rock:
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}

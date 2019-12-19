@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Timers;
-public class GetWords : MonoBehaviour
+public class wordForGame : MonoBehaviour
 {
     public Image image;
     public Image gOver;
@@ -20,21 +20,19 @@ public class GetWords : MonoBehaviour
     public ConfidenceLevel confidence = ConfidenceLevel.Low;
     public float speed = 1;
     public TextMeshProUGUI results;
-    public GameObject thi;
-    public GameObject mi;
-    public GameObject player;
+    public GameObject you;
     protected PhraseRecognizer recognizer;
     protected string word = "";
+    public GameObject player;
+    public GameObject other;
 
     public bool updateOn = true;
     private static System.Timers.Timer aTimer;
 
     public void newWord()
     {
-
-        results.text = "Speak Now";
         updateOn = true;
-        string chosen = WordBase.getRandFromCSV(group,difficulty);
+        string chosen = WordBase.getRandFromCSV(group, difficulty);
 
         StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
 
@@ -61,32 +59,28 @@ public class GetWords : MonoBehaviour
     {
         word = args.text;
     }
-   
+
     private void Update()
     {
-        
+
         if (word == correct && updateOn == true)
         {
-           
-            results.text = "You said: <b>" + correct + "</b>" + " correctly!";
-            globalScore.score += 1;
-            globalScore.coins += 1;
 
-           
+            results.text = "You said: <b>" + correct + "</b>" + " correctly!";
 
             recognizer.Stop();
             updateOn = false;
-            word = "";
-            thi.SetActive(false);
-            mi.SetActive(true);
             player.SetActive(true);
+            other.SetActive(true);
+            Destroy(you);
+
 
             // SceneManager.LoadScene("Flashcards");
         }
     }
 
 
-   /* private void outOfTime()
+    private void outOfTime()
     {
         updateOn = false;
 
@@ -94,7 +88,7 @@ public class GetWords : MonoBehaviour
         recognizer.Stop();
 
         //   SceneManager.LoadScene("Flashcards");
-    }*/
+    }
     private void OnApplicationQuit()
     {
         if (recognizer != null && recognizer.IsRunning)
@@ -104,3 +98,4 @@ public class GetWords : MonoBehaviour
         }
     }
 }
+
