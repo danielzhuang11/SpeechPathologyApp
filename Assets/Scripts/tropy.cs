@@ -6,15 +6,15 @@ public class tropy : MonoBehaviour
 {
     public float require;
     public GameObject trphie;
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log("updating");
+        Debug.Log(globalScore.score);
         if(globalScore.score >= require)
         {
+            Debug.Log("score");
             trphie.SetActive(true);
         }
-        else
-        {
-            trphie.SetActive(false);
-        }
+       
     }
 }
