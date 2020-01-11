@@ -49,7 +49,7 @@ public class Voice : MonoBehaviour
         if (word == correct)
         { 
         results.text = "You said: <b>" + correct + "</b>" + "correctly!";
-            Setup.pts += 100;
+            globalScore.score += 1;
         }
         
 

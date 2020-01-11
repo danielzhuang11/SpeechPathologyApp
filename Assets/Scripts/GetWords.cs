@@ -70,8 +70,9 @@ public class GetWords : MonoBehaviour
            
             results.text = "You said: <b>" + correct + "</b>" + " correctly!";
             globalScore.score += 1;
-            globalScore.coins += 1;
 
+            globalScore.coins += 1;
+            PlayerPrefs.SetFloat("Score", globalScore.score);
            
 
             recognizer.Stop();

@@ -37,4 +37,10 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene("rewards");
     }
 
+    public void doExitGame()
+    {
+        Application.Quit();
+    }
+
+
 }

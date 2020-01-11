@@ -8,11 +8,11 @@ public class tropy : MonoBehaviour
     public GameObject trphie;
     void FixedUpdate()
     {
-        Debug.Log("updating");
+   //     Debug.Log("updating");
         Debug.Log(globalScore.score);
         if(globalScore.score >= require)
         {
-            Debug.Log("score");
+           // Debug.Log("score");
             trphie.SetActive(true);
         }
        
