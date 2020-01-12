@@ -1332,7 +1332,7 @@ MonoBehaviour:
   gOver: {fileID: 124692407}
   time: 10
   correct: no
-  confidence: 1
+  confidence: 2
   speed: 1
   results: {fileID: 1269805281}
   thi: {fileID: 226425011}
