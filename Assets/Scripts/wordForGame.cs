@@ -17,7 +17,7 @@ public class wordForGame : MonoBehaviour
     public string correct;
     private string difficulty;
     private string group;
-    public ConfidenceLevel confidence = ConfidenceLevel.Low;
+    public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
     public TextMeshProUGUI results;
     public GameObject you;
@@ -34,8 +34,8 @@ public class wordForGame : MonoBehaviour
         updateOn = true;
         string chosen = WordBase.getRandFromCSV(group, difficulty);
 
-        StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
-
+        //StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
+        results.text = word;
         correct = chosen;
         string[] t = new[] { correct };
 
@@ -78,8 +78,6 @@ public class wordForGame : MonoBehaviour
             // SceneManager.LoadScene("Flashcards");
         }
     }
-
-
     private void outOfTime()
     {
         updateOn = false;

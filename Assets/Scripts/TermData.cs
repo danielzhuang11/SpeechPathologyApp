@@ -14,7 +14,6 @@ public static class TermData
         // < group, [word, url] >
         public Dictionary<string, string[]> terms;
 
-
         public Terms()
         {
             languageIndicies = new Dictionary<string, int>();
