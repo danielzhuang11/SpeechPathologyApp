@@ -17,7 +17,7 @@ public class GetWords : MonoBehaviour
     public string correct;
     private string difficulty;
     private string group;
-    public ConfidenceLevel confidence = ConfidenceLevel.Low;
+    public ConfidenceLevel confidence = ConfidenceLevel.High;
     public float speed = 1;
     public TextMeshProUGUI results;
     public GameObject thi;
@@ -32,18 +32,17 @@ public class GetWords : MonoBehaviour
     public void newWord()
     {
 
-        results.text = "Speak Now";
         updateOn = true;
         string chosen = WordBase.getRandFromCSV(group,difficulty);
 
-        StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
+        //StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
+        results.text = chosen;
 
         correct = chosen;
         string[] t = new[] { correct };
 
         if (word != null)
         {
-            gOver.gameObject.SetActive(false);
             recognizer = new KeywordRecognizer(t, confidence);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
             recognizer.Start();
@@ -52,7 +51,7 @@ public class GetWords : MonoBehaviour
 
     private void Start()
     {
-        gOver.gameObject.SetActive(false);
+        results.text = "Press the New Word Button";
         difficulty = DropdownFill.difficulty;
         group = DropdownFill.group;
     }
@@ -73,7 +72,6 @@ public class GetWords : MonoBehaviour
 
             globalScore.coins += 1;
             PlayerPrefs.SetFloat("Score", globalScore.score);
-           
 
             recognizer.Stop();
             updateOn = false;
@@ -86,16 +84,6 @@ public class GetWords : MonoBehaviour
         }
     }
 
-
-   /* private void outOfTime()
-    {
-        updateOn = false;
-
-        gOver.gameObject.SetActive(true);
-        recognizer.Stop();
-
-        //   SceneManager.LoadScene("Flashcards");
-    }*/
     private void OnApplicationQuit()
     {
         if (recognizer != null && recognizer.IsRunning)

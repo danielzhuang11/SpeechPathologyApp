@@ -9,7 +9,7 @@ public static class WordBase
     public static TermData.Terms termData;
 
 
-    public static IEnumerator setImage(string URL, Image image)
+   /* public static IEnumerator setImage(string URL, Image image)
     {
         // Check internet connection
         if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -37,11 +37,12 @@ public static class WordBase
 
             image.GetComponent<Image>().sprite = sprite;
         }
-    }
+    }*/
     public static string getRandFromCSV(string group, string difficulty)
     {
         System.Random rnd = new System.Random();
         string chosen = termData.terms.ElementAt(rnd.Next(0,termData.terms.Count)).Key;
+        Debug.Log((termData.terms[chosen][2]));
         while ((termData.terms[chosen][2] != group && group != "Any") || (termData.terms[chosen][1] != difficulty && difficulty != "Any"))
         {
             chosen = termData.terms.ElementAt(rnd.Next(0, termData.terms.Count)).Key;
