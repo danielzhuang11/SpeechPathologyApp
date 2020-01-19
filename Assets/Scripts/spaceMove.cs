@@ -17,7 +17,6 @@ public class spaceMove : MonoBehaviour
     public GameObject playerz;
     private int scoreSpa = 0;
     public Text score;
-    public GameObject can;
     public GameObject cant2;
     void Start()
     {
@@ -67,8 +66,7 @@ public class spaceMove : MonoBehaviour
         if (collision.collider.tag == "Coin")
         {
             scoreSpa += 1;
-            can.SetActive(false);
-            playerz.SetActive(false);
+            Time.timeScale = 0;
             cant2.SetActive(true);
             score.text = "Score: " + scoreSpa;
         }

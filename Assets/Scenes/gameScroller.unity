@@ -1597,15 +1597,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 121271443413809413, guid: 64c6d2de34766d04e80140517b7bc803,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 121271443413809414, guid: 64c6d2de34766d04e80140517b7bc803,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 121271443413809415, guid: 64c6d2de34766d04e80140517b7bc803,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: fd820fe4a6de3bb4ca93cc409dbcabf3,
+        type: 3}
     - target: {fileID: 121271443709195413, guid: 64c6d2de34766d04e80140517b7bc803,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.5000153
+      objectReference: {fileID: 0}
+    - target: {fileID: 121271443709195415, guid: 64c6d2de34766d04e80140517b7bc803,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f81619515af027848b3401dafec260d4,
+        type: 3}
+    - target: {fileID: 121271443709195415, guid: 64c6d2de34766d04e80140517b7bc803,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 121271444043341285, guid: 64c6d2de34766d04e80140517b7bc803,
         type: 3}
@@ -1647,6 +1669,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 121271444101257690, guid: 64c6d2de34766d04e80140517b7bc803,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: fd820fe4a6de3bb4ca93cc409dbcabf3,
+        type: 3}
     - target: {fileID: 121271444112636633, guid: 64c6d2de34766d04e80140517b7bc803,
         type: 3}
       propertyPath: m_RootOrder
@@ -2928,6 +2956,4 @@ MonoBehaviour:
   speed: 1
   results: {fileID: 9085434649263178800}
   thi: {fileID: 9085434648243456175}
-  mi: {fileID: 1718708846}
-  player: {fileID: 1327972172}
   updateOn: 1

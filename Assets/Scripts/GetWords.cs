@@ -17,12 +17,10 @@ public class GetWords : MonoBehaviour
     public string correct;
     private string difficulty;
     private string group;
-    public ConfidenceLevel confidence = ConfidenceLevel.High;
+    public ConfidenceLevel confidence = ConfidenceLevel.Low;
     public float speed = 1;
     public TextMeshProUGUI results;
     public GameObject thi;
-    public GameObject mi;
-    public GameObject player;
     protected PhraseRecognizer recognizer;
     protected string word = "";
 
@@ -77,8 +75,8 @@ public class GetWords : MonoBehaviour
             updateOn = false;
             word = "";
             thi.SetActive(false);
-            mi.SetActive(true);
-            player.SetActive(true);
+            Time.timeScale = 1;
+         
 
             // SceneManager.LoadScene("Flashcards");
         }

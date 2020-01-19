@@ -88,9 +88,7 @@ public class movementSideScroll : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-            playerz.SetActive(false);
-            mi.SetActive(false);
-            playerz.SetActive(false);
+            Time.timeScale = 0;
             ui.SetActive(true);
         }
         if (collision.collider.tag == "Enemy")
