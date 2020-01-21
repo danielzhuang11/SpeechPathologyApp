@@ -32,7 +32,7 @@ public class wordForGame : MonoBehaviour
     public void newWord()
     {
         updateOn = true;
-        string chosen = WordBase.getRandFromCSV(group, difficulty);
+        string chosen = WordBase.getRandFromCSV(group);
 
         //StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
         results.text = word;

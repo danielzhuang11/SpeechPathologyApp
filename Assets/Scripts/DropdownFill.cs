@@ -8,16 +8,16 @@ public class DropdownFill : MonoBehaviour
     public static string difficulty;
     public static string group ;
     // Start is called before the first frame update
-    public Dropdown dropdownd;
+    //public Dropdown dropdownd;
+    public static List<string> groups;
     public Dropdown dropdowng;
-    List<string> groups = new List<string>() { "R Initial", "R Final", "S Initial", "S Final", "L Initial", "L Final", "R Blends Initial", "L blends Initial", "Any" };
-    List<string> difficulties = new List<string>() { "Easy", "Medium", "Hard", "Any" };
+   //new List<string>() { "R Initial", "R Final", "S Initial", "S Final", "L Initial", "L Final", "R Blends Initial", "L blends Initial", "Any" };
+    //List<string> difficulties = new List<string>() { "Level 1", "Level 2", "Level 3", "Any" };
     void Start()
     {
         PopulateListG();
-        PopulateListD();
-        difficulty = "Easy";
-        group = "R Initial";
+      //  PopulateListD();
+        group = "Level 1 /r/ initial";
 
     }
     public void groupindexChanged(int index)
@@ -25,17 +25,17 @@ public class DropdownFill : MonoBehaviour
         group = groups[index];
     }
 
-    public void dindexChanged(int index)
+   /* public void dindexChanged(int index)
     {
         difficulty = difficulties[index];
-    }
+    }*/
     void PopulateListG()
     {
         dropdowng.AddOptions(groups);
     }
-    void PopulateListD()
+   /* void PopulateListD()
     {
         dropdownd.AddOptions(difficulties);
-    }
+    }*/
    
 }

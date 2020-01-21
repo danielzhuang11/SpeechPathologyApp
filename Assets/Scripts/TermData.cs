@@ -8,15 +8,15 @@ public static class TermData
 
     public class Terms
     {
-        // < language, index of language's term within a value of termTranslations >
-        public Dictionary<string, int> languageIndicies;
+        public List<string> groups;
+
 
         // < group, [word, url] >
         public Dictionary<string, string[]> terms;
 
         public Terms()
         {
-            languageIndicies = new Dictionary<string, int>();
+            groups = new List<string>();
             terms = new Dictionary<string, string[]>();
         }
     }

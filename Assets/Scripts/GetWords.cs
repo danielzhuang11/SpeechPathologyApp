@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Timers;
+using UnityEngine.Audio;
 public class GetWords : MonoBehaviour
 {
     public Image image;
@@ -17,23 +18,27 @@ public class GetWords : MonoBehaviour
     public string correct;
     private string difficulty;
     private string group;
-    public ConfidenceLevel confidence = ConfidenceLevel.Low;
+    public ConfidenceLevel confidence = ConfidenceLevel.High;
     public float speed = 1;
     public TextMeshProUGUI results;
     public GameObject thi;
     protected PhraseRecognizer recognizer;
     protected string word = "";
-
+   public  Sprite card;
+    AudioSource audioSource;
     public bool updateOn = true;
     private static System.Timers.Timer aTimer;
-
     public void newWord()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = Microphone.Start("", true, 10, 44100);
 
         updateOn = true;
-        string chosen = WordBase.getRandFromCSV(group,difficulty);
+        string chosen = WordBase.getRandFromCSV(group);
 
-        //StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][0], image));
+        if(WordBase.termData.terms[chosen][1] != null)
+            StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][1], image));
+        else { image.GetComponent<Image>().sprite = card; }
         results.text = chosen;
 
         correct = chosen;
@@ -50,22 +55,26 @@ public class GetWords : MonoBehaviour
     private void Start()
     {
         results.text = "Press the New Word Button";
-        difficulty = DropdownFill.difficulty;
+        //difficulty = DropdownFill.difficulty;
         group = DropdownFill.group;
     }
 
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         word = args.text;
+
     }
-   
+
     private void Update()
     {
         
         if (word == correct && updateOn == true)
         {
-           
-            results.text = "You said: <b>" + correct + "</b>" + " correctly!";
+            audioSource.Play();
+            Microphone.End(null);
+
+
+            results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly!";
             globalScore.score += 1;
 
             globalScore.coins += 1;

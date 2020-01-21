@@ -77,7 +77,6 @@ public class Loader : MonoBehaviour
 
                 currLineEntries.Add(currEntry);
                 currEntry = "";
-            
 
                 // Line ended
               
@@ -107,8 +106,6 @@ public class Loader : MonoBehaviour
                         else
                         {
                             // If we were in a quote, trim bordering quotation marks
-                            
-
                             currLineEntries.Add(currEntry);
                             currEntry = "";
                            
@@ -123,6 +120,8 @@ public class Loader : MonoBehaviour
             }
         }
 
+        DropdownFill.groups = WordBase.termData.groups;
+        DropdownFill.groups.Add("Any");
         onCompleted(null);
     }
 
@@ -131,40 +130,44 @@ public class Loader : MonoBehaviour
 
 
         // This line contains the column headers, telling us which languages are in which column
-        if (currLineIndex == 0)
-        {
-            //languages = new List<string>();
-            //for (int columnIndex = 0; columnIndex < currLineElements.Count; columnIndex++)
-            //{
-            //    string currLanguage = currLineElements[columnIndex];
-            //    Assert.IsTrue((columnIndex != 0 || currLanguage == "English"), "First column first row was:" + currLanguage);
-            //    Assert.IsFalse(Manager.instance.translator.termData.languageIndicies.ContainsKey(currLanguage));
-            //    Manager.instance.translator.termData.languageIndicies.Add(currLanguage, currLineIndex);
-            //    languages.Add(currLanguage);
-            //}
-            //UnityEngine.Assertions.Assert.IsFalse(languages.Count == 0);
-        }
+       
         // This is a normal node
-        else if (currLineElements.Count > 1)
+        if (currLineElements.Count > 1)
         {
             string word = null;
-            string[] terms = new string[3];
-
+            string[] terms = new string[2];
+            string currentGroup ="";
             for (int columnIndex = 0; columnIndex < currLineElements.Count; columnIndex++)
             {
+               
                 string currentTerm = currLineElements[columnIndex];
                 if (columnIndex == 0)
                 {
-                  //  Assert.IsFalse(WordBase.termData.terms.ContainsKey(currentTerm), "Saw this term twice: " + currentTerm);
-                    word = currentTerm;
+                    WordBase.termData.groups.Add(currentTerm);
+                    currentGroup = currentTerm;
+                    continue;
                 }
                 else
-                {
-                    terms[columnIndex - 1] = currentTerm;
+                {   word = currentTerm;
+                    terms[0] = currentGroup;
+                   
+
+                        if (columnIndex+1 < currLineElements.Count &&  currLineElements[columnIndex + 1].IndexOf("http") > -1)
+                        {
+
+                            terms[1] = currLineElements[columnIndex + 1];
+                            columnIndex += 1;
+
+                        }
+                        else 
+                        { terms[1] = null; }
+                  
                 }
+
+                WordBase.termData.terms[word] = new string[] {terms[0], terms[1] };
+
             }
-            WordBase.termData.terms[word] = terms;
-          
+
             //print( "englishSpelling: >" + englishSpelling + "<" );
         }
         else
