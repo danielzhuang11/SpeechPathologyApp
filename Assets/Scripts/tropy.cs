@@ -9,7 +9,7 @@ public class tropy : MonoBehaviour
     void FixedUpdate()
     {
    //     Debug.Log("updating");
-        Debug.Log(globalScore.score);
+
         if(globalScore.score >= require)
         {
            // Debug.Log("score");

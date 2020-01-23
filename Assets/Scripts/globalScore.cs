@@ -11,5 +11,6 @@ public static class globalScore
     {
         score = PlayerPrefs.GetFloat("Score");
 
+
     }
 }

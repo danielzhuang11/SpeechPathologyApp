@@ -167,7 +167,16 @@ public class Loader : MonoBehaviour
                 WordBase.termData.terms[word] = new string[] {terms[0], terms[1] };
 
             }
+            if (WordBase.termData.groupScore.Count < WordBase.termData.groups.Count)
+            {
+                   for(int pos = 0; pos < WordBase.termData.groups.Count; pos++)
+                   {
+                       if(pos>=WordBase.termData.groupScore.Count)
+                       WordBase.termData.groupScore.Add(WordBase.termData.groups[pos], PlayerPrefs.GetInt(WordBase.termData.groups[pos],0));
 
+                   }
+                   
+            }
             //print( "englishSpelling: >" + englishSpelling + "<" );
         }
         else

@@ -37,7 +37,14 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("rewards");
     }
-
+    public void plsWork()
+    {
+        Debug.Log("clickity clakc");
+    }
+    public void GotoStatsScene()
+    {
+        SceneManager.LoadScene("stats");
+    }
     public void doExitGame()
     {
         Application.Quit();
