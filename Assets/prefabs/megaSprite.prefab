@@ -83,7 +83,6 @@ GameObject:
   - component: {fileID: 2000560126631983626}
   - component: {fileID: 2000560126631983627}
   - component: {fileID: 2000560126631983623}
-  - component: {fileID: 2000560126631983622}
   m_Layer: 0
   m_Name: megaSprite
   m_TagString: Player
@@ -215,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7367c3e940f7ef14f9ab5d4195db67a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 2000560126631983622}
+  anim: {fileID: 0}
   moveSpeed: 5
   joystick: {fileID: 0}
   isGrounded: 0
@@ -223,22 +222,9 @@ MonoBehaviour:
   healthMax: 5
   player: {fileID: 2000560126631983624}
   healthBar: {fileID: 0}
---- !u!95 &2000560126631983622
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000560126631983628}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6cb77d7d7cc634c4ab29c538a25fe902, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  GameOver: {fileID: 0}
+  playerz: {fileID: 0}
+  coinTxt: {fileID: 0}
+  mi: {fileID: 0}
+  gamPos: {fileID: 0}
+  ui: {fileID: 0}
