@@ -11,6 +11,7 @@ public class SceneSwitcher : MonoBehaviour
     public void GotoGameSelectorScene()
     {
         Time.timeScale = 1;
+        spaceMove.scoreSpa = 0;
         SceneManager.LoadScene("SelectGame");
     }
 
@@ -36,10 +37,6 @@ public class SceneSwitcher : MonoBehaviour
     public void GotoRewardScene()
     {
         SceneManager.LoadScene("rewards");
-    }
-    public void plsWork()
-    {
-        Debug.Log("clickity clakc");
     }
     public void GotoStatsScene()
     {
