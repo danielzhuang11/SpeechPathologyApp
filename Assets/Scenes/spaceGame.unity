@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -153,11 +154,13 @@ MonoBehaviour:
   image: {fileID: 0}
   gOver: {fileID: 0}
   time: 10
+  cGrop: 
   correct: no
   confidence: 2
   speed: 1
   results: {fileID: 0}
   thi: {fileID: 0}
+  card: {fileID: 0}
   updateOn: 1
 --- !u!114 &232140702
 MonoBehaviour:
@@ -531,6 +534,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2198,11 +2202,13 @@ MonoBehaviour:
   image: {fileID: 1639714260}
   gOver: {fileID: 0}
   time: 10
+  cGrop: 
   correct: no
   confidence: 2
   speed: 1
   results: {fileID: 513443967}
   thi: {fileID: 612485646}
+  card: {fileID: 0}
   updateOn: 1
 --- !u!114 &1569246860
 MonoBehaviour:
@@ -2277,6 +2283,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2491,6 +2498,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3096,7 +3104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rock:
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}

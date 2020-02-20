@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1907605672354384054}
   - component: {fileID: 327400112144676011}
   - component: {fileID: 7655720345268350803}
+  - component: {fileID: 7651527354614179026}
   m_Layer: 5
   m_Name: Asteroid
   m_TagString: Enemy
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -134,3 +136,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.46}
   m_Size: {x: 0.57, y: 1.16}
   m_Direction: 0
+--- !u!114 &7651527354614179026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267566467673508916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725e7ce334daffd49bb8e20028237bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
