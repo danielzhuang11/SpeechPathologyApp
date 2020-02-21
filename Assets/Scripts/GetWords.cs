@@ -16,7 +16,6 @@ public class GetWords : MonoBehaviour
     public int time;
 
     public string correct;
-    private string difficulty;
     private string group;
     public ConfidenceLevel confidence = ConfidenceLevel.High;
     public float speed = 1;
@@ -27,7 +26,10 @@ public class GetWords : MonoBehaviour
    public  Sprite card;
     AudioSource audioSource;
     public bool updateOn = true;
+    private bool sentence = false;
+    public Button record;
     private static System.Timers.Timer aTimer;
+
     public void newWord()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -41,10 +43,16 @@ public class GetWords : MonoBehaviour
         else { image.GetComponent<Image>().sprite = card; }
         results.text = chosen;
 
+       
         correct = chosen;
         string[] t = new[] { correct };
-
-        if (word != null)
+        if (group.Contains("Level 3"))
+        {
+            sentence = true;
+            record.gameObject.SetActive(true);
+        }
+        else { sentence = false; record.gameObject.SetActive(false); }
+        if (word != null && !sentence)
         {
             recognizer = new KeywordRecognizer(t, confidence);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
@@ -54,9 +62,17 @@ public class GetWords : MonoBehaviour
 
     private void Start()
     {
+       
+
         results.text = "Press the New Word Button";
         //difficulty = DropdownFill.difficulty;
         group = DropdownFill.group;
+        if (group.Contains("Level 3"))
+        {
+            sentence = true;
+            record.gameObject.SetActive(true);
+        }
+        else { sentence = false; }
     }
 
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
@@ -71,8 +87,8 @@ public class GetWords : MonoBehaviour
         if (word == correct && updateOn == true)
         {
             audioSource.Play();
+            //Speech.instance.Say(word);
             Microphone.End(null);
-
 
             results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly!";
             globalScore.score += 1;

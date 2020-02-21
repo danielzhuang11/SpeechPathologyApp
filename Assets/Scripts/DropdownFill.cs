@@ -31,7 +31,14 @@ public class DropdownFill : MonoBehaviour
     }*/
     void PopulateListG()
     {
+        var texture = new Texture2D(1, 1); // creating texture with 1 pixel
+        texture.SetPixel(50, 50, Color.red); // setting to this pixel some color
+        texture.Apply(); //applying texture. necessarily
+        var item = new Dropdown.OptionData(Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0)));
+
+      //  dropdowng.options.Add(item);
         dropdowng.AddOptions(groups);
+
     }
    /* void PopulateListD()
     {

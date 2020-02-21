@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -1517,7 +1518,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280442151
+    rgba: 4280442408
   m_fontColor: {r: 0.15660276, g: 0.3679245, b: 0.13363294, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2201,7 +2202,6 @@ GameObject:
   - component: {fileID: 1775192111}
   - component: {fileID: 1775192113}
   - component: {fileID: 1775192112}
-  - component: {fileID: 1775192114}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2225,7 +2225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3645226, y: 0.74530816}
   m_AnchorMax: {x: 0.6661951, y: 0.95276946}
-  m_AnchoredPosition: {x: 0.5, y: 2.5}
+  m_AnchoredPosition: {x: -3.5, y: 0.5}
   m_SizeDelta: {x: -7, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775192112
@@ -2347,30 +2347,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775192110}
   m_CullTransparentMesh: 0
---- !u!132 &1775192114
-GUIText:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775192110}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 9a8267b2473c39340bd35158090a5072, type: 3}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &2094098011
 GameObject:
   m_ObjectHideFlags: 0

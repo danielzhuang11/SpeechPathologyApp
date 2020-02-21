@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -856,7 +857,6 @@ GameObject:
   - component: {fileID: 1118402550}
   - component: {fileID: 1118402553}
   - component: {fileID: 1118402552}
-  - component: {fileID: 1118402551}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -883,30 +883,6 @@ RectTransform:
   m_AnchoredPosition: {x: 136.2, y: -11}
   m_SizeDelta: {x: -0.3999939, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!132 &1118402551
-GUIText:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118402549}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 9a8267b2473c39340bd35158090a5072, type: 3}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!114 &1118402552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1447,7 +1423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.020871082, y: 0.8847619}
   m_AnchorMax: {x: 0.16100001, y: 0.9725239}
-  m_AnchoredPosition: {x: -11, y: 0.70929}
+  m_AnchoredPosition: {x: -11.000061, y: 0.70928955}
   m_SizeDelta: {x: 6.727051, y: 1.4186096}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1340377967
@@ -1841,10 +1817,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.12335351, g: 0.7924528, b: 0.14283718, a: 1}
+    m_NormalColor: {r: 0.23589355, g: 0.8773585, b: 0.2546499, a: 1}
     m_HighlightedColor: {r: 0.22122954, g: 0.4528302, b: 0.1986472, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.15197797, g: 0.3301887, b: 0.026477398, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
