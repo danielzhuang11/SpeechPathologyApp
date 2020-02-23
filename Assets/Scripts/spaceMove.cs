@@ -15,7 +15,7 @@ public class spaceMove : MonoBehaviour
     private float health;
     public GameObject GameOver;
     public GameObject playerz;
-    private int scoreSpa = 0;
+    public static int scoreSpa = 0;
     public Text score;
     public GameObject cant2;
     void Start()
@@ -30,6 +30,7 @@ public class spaceMove : MonoBehaviour
             GameOver.SetActive(true);
             playerz.SetActive(false);
             globalScore.score += scoreSpa;
+            scoreSpa = 0;
 
         }
         if (joystick.Horizontal >= 0.2f)

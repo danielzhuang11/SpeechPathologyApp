@@ -14,7 +14,7 @@ public class GetWords : MonoBehaviour
     public Image image;
     public Image gOver;
     public int time;
-
+    public string cGrop;
     public string correct;
     private string group;
     public ConfidenceLevel confidence = ConfidenceLevel.High;
@@ -44,6 +44,7 @@ public class GetWords : MonoBehaviour
         results.text = chosen;
 
        
+        cGrop = WordBase.termData.terms[chosen][0];
         correct = chosen;
         string[] t = new[] { correct };
         if (group.Contains("Level 3"))
@@ -94,6 +95,9 @@ public class GetWords : MonoBehaviour
             globalScore.score += 1;
 
             globalScore.coins += 1;
+            Debug.Log(cGrop);
+            WordBase.termData.groupScore[cGrop] += 1;
+            PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
             PlayerPrefs.SetFloat("Score", globalScore.score);
 
             recognizer.Stop();

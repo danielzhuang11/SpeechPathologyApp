@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/rewards.unity
     guid: 095a0a1eb6636dd4b99b19772653b73b
+  - enabled: 1
+    path: Assets/Scenes/stats.unity
+    guid: baff4b5426f4f694dad57118a6e1892e
   m_configObjects: {}

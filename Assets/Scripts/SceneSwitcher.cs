@@ -11,6 +11,7 @@ public class SceneSwitcher : MonoBehaviour
     public void GotoGameSelectorScene()
     {
         Time.timeScale = 1;
+        spaceMove.scoreSpa = 0;
         SceneManager.LoadScene("SelectGame");
     }
 
@@ -37,7 +38,10 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("rewards");
     }
-
+    public void GotoStatsScene()
+    {
+        SceneManager.LoadScene("stats");
+    }
     public void doExitGame()
     {
         Application.Quit();
