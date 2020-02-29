@@ -12,8 +12,6 @@ using UnityEngine.Audio;
 public class GetWords : MonoBehaviour
 {
     public Image image;
-    public Image gOver;
-    public int time;
     public string cGrop;
     public string correct;
     private string group;

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 //Use the PointerDown and PointerUP interfaces to detect a mouse down and up on a ui element
 public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public  GameObject thi;
     AudioClip recording;
     //Keep this one as a global variable (outside the functions) too and use GetComponent during start to save resources
     AudioSource audioSource;
@@ -33,6 +34,9 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //Play recording
         audioSource.clip = recording;
         audioSource.Play();
+
+        thi.SetActive(false);
+
 
     }
 

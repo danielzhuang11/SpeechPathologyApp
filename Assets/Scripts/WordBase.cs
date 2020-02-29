@@ -42,7 +42,8 @@ public static class WordBase
     {
         System.Random rnd = new System.Random();
         string chosen = termData.terms.ElementAt(rnd.Next(0,termData.terms.Count)).Key;
-        while ((termData.terms[chosen][0] != group && group != "Any"))
+
+        while ((termData.terms[chosen][0] != group && !(group == "Any" && !group.Contains("Level 3") )))
         {
             chosen = termData.terms.ElementAt(rnd.Next(0, termData.terms.Count)).Key;
         }

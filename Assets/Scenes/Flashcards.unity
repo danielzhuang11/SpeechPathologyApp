@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0026fb7b1a590e84ba969df236a93e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thi: {fileID: 226425011}
 --- !u!1 &999423279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,8 +1587,6 @@ GameObject:
   - component: {fileID: 1634111937}
   - component: {fileID: 1634111936}
   - component: {fileID: 1634111938}
-  - component: {fileID: 1634111939}
-  - component: {fileID: 1634111940}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1634,52 +1633,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1927792889}
-  gOver: {fileID: 0}
-  time: 10
+  cGrop: 
   correct: no
-  confidence: 3
+  confidence: 0
   speed: 1
   results: {fileID: 1269805281}
   thi: {fileID: 226425011}
   card: {fileID: 21300000, guid: 69dcd725b14b33e4db2f7086c6a2bef6, type: 3}
   updateOn: 1
   record: {fileID: 576021724}
---- !u!114 &1634111939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634111935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d21ae2ca39ca4c43978a8b735dcc27c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceID: wat
---- !u!114 &1634111940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634111935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9da62a64d4d4ea42b5b5ddf6aae71d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Options:
-    dllPathPattern: '{assets}/Plugins/espeak/__{name}'
-    assemblyPaths: []
-    loadingMode: 1
-    unixDlopenFlags: 1
-    threadSafe: 0
-    enableCrashLogs: 0
-    crashLogsDir: '{assets}/'
-    crashLogsStackTrace: 0
-    mockAllNativeFunctions: 1
-    onlyInEditor: 1
 --- !u!1 &1927792887
 GameObject:
   m_ObjectHideFlags: 0
