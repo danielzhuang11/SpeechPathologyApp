@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public  GameObject thi;
+
+
     AudioClip recording;
     //Keep this one as a global variable (outside the functions) too and use GetComponent during start to save resources
     AudioSource audioSource;
@@ -17,10 +19,14 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
+
+
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+
         //End the recording when the mouse comes back up, then play it
         Microphone.End("");
 
@@ -34,8 +40,9 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //Play recording
         audioSource.clip = recording;
         audioSource.Play();
+        spaceMove.frozen = false;
 
-        thi.SetActive(false);
+        thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
 
 
     }

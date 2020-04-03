@@ -17,7 +17,9 @@ public class spaceMove : MonoBehaviour
     public GameObject playerz;
     public static int scoreSpa = 0;
     public Text score;
-    public GameObject cant2;
+    public GameObject ui;
+
+    public static bool frozen = false;
     void Start()
     {
         health = healthMax;
@@ -67,8 +69,9 @@ public class spaceMove : MonoBehaviour
         if (collision.collider.tag == "Coin")
         {
             scoreSpa += 1;
-            Time.timeScale = 0;
-            cant2.SetActive(true);
+            //Time.timeScale = 0;
+            frozen = true;
+            ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
             score.text = "Score: " + scoreSpa;
         }
     }

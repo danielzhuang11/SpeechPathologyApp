@@ -10,15 +10,18 @@ public class rockSpawn : MonoBehaviour
     private float timeTill;
     void Update()
     {
-        timeTill += Time.deltaTime;
-        if (timeTill >= reload)
+        if (!spaceMove.frozen)
         {
-            Instantiate(rock[Random.Range(0,rock.Count)], spawn[Random.Range(0, spawn.Count)].position, Quaternion.identity);
-            timeTill = 0;
-        }
-        if (spaceMove.scoreSpa % 3 == 0 && reload >1)
-        {
-            reload = 3 - spaceMove.scoreSpa / 3;
+            timeTill += Time.deltaTime;
+            if (timeTill >= reload)
+            {
+                Instantiate(rock[Random.Range(0, rock.Count)], spawn[Random.Range(0, spawn.Count)].position, Quaternion.identity);
+                timeTill = 0;
+            }
+            if (spaceMove.scoreSpa % 3 == 0 && reload > 1)
+            {
+                reload = 3 - spaceMove.scoreSpa / 3;
+            }
         }
     }
 }

@@ -88,8 +88,9 @@ public class movementSideScroll : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-            Time.timeScale = 0;
-            ui.SetActive(true);
+            //Time.timeScale = 0;
+            ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
+
         }
         if (collision.collider.tag == "Enemy")
         {

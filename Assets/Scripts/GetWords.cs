@@ -61,7 +61,8 @@ public class GetWords : MonoBehaviour
 
     private void Start()
     {
-       
+
+        thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -5000);
 
         results.text = "Press the New Word Button";
         //difficulty = DropdownFill.difficulty;
@@ -101,7 +102,8 @@ public class GetWords : MonoBehaviour
             recognizer.Stop();
             updateOn = false;
             word = "";
-            thi.SetActive(false);
+            spaceMove.frozen = false;
+            thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -5000);
             Time.timeScale = 1;
          
 
