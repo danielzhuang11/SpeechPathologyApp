@@ -15,14 +15,16 @@ public class spaceMove : MonoBehaviour
     private float health;
     public GameObject GameOver;
     public GameObject playerz;
-    public static int scoreSpa = 0;
     public Text score;
     public GameObject ui;
 
     public static bool frozen = false;
     void Start()
     {
+        globalScore.coins = 0;
+
         health = healthMax;
+        Time.timeScale = 1;
     }
     void FixedUpdate()
     {
@@ -31,18 +33,21 @@ public class spaceMove : MonoBehaviour
         {
             GameOver.SetActive(true);
             playerz.SetActive(false);
-            globalScore.score += scoreSpa;
-            scoreSpa = 0;
+            // globalScore.score += scoreSpa;
+            globalScore.coins = 0;
+
 
         }
         if (joystick.Horizontal >= 0.2f)
         {
+            score.text = "Score: " + globalScore.coins;
             horizontalMove = moveSpeed;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             
         }
         else if (joystick.Horizontal <= -0.2f)
         {
+            score.text = "Score: " + globalScore.coins;
             horizontalMove = -moveSpeed;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             
@@ -51,6 +56,7 @@ public class spaceMove : MonoBehaviour
         }
         else
         {
+            score.text = "Score: " + globalScore.coins;
             horizontalMove = 0f;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
            
@@ -68,11 +74,13 @@ public class spaceMove : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-            scoreSpa += 1;
-            //Time.timeScale = 0;
-            frozen = true;
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
-            score.text = "Score: " + scoreSpa;
+            score.text = "Score: " + globalScore.coins;
+            ui.SetActive(true);
+            frozen = true;
+
+
+
         }
     }
     

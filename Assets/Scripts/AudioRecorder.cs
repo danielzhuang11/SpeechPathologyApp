@@ -40,6 +40,9 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //Play recording
         audioSource.clip = recording;
         audioSource.Play();
+        globalScore.coins += 1;
+        globalScore.score += 1;
+
         spaceMove.frozen = false;
 
         thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);

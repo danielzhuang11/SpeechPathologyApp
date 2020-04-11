@@ -6,7 +6,7 @@ public class tropy : MonoBehaviour
 {
     public float require;
     public GameObject trphie;
-    void FixedUpdate()
+    void Update()
     {
    //     Debug.Log("updating");
 

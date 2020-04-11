@@ -10,8 +10,6 @@ public class SceneSwitcher : MonoBehaviour
     }
     public void GotoGameSelectorScene()
     {
-        Time.timeScale = 1;
-        spaceMove.scoreSpa = 0;
         SceneManager.LoadScene("SelectGame");
     }
 

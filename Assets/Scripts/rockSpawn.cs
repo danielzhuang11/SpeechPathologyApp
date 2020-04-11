@@ -18,9 +18,9 @@ public class rockSpawn : MonoBehaviour
                 Instantiate(rock[Random.Range(0, rock.Count)], spawn[Random.Range(0, spawn.Count)].position, Quaternion.identity);
                 timeTill = 0;
             }
-            if (spaceMove.scoreSpa % 3 == 0 && reload > 1)
+            if (globalScore.coins % 3 == 0 && reload > 1)
             {
-                reload = 3 - spaceMove.scoreSpa / 3;
+                reload = 3 - globalScore.coins / 3;
             }
         }
     }

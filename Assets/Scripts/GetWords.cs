@@ -2,46 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows.Speech;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Timers;
 using UnityEngine.Audio;
+#if UNITY_EDITOR || UNITY_STANDALONE
+    using UnityEngine.Windows.Speech;
+#endif
 public class GetWords : MonoBehaviour
 {
     public Image image;
     public string cGrop;
     public string correct;
     private string group;
-    public ConfidenceLevel confidence = ConfidenceLevel.High;
     public float speed = 1;
     public TextMeshProUGUI results;
     public GameObject thi;
-    protected PhraseRecognizer recognizer;
-    protected string word = "";
-   public  Sprite card;
+    public static string word = "";
+    public Sprite card;
     AudioSource audioSource;
     public bool updateOn = true;
     private bool sentence = false;
     public Button record;
+    public Button speech;
+    public SampleSpeechToText sample;
+#if UNITY_EDITOR || UNITY_STANDALONE
+
+    protected PhraseRecognizer recognizer;
+#endif
+
+
     private static System.Timers.Timer aTimer;
 
     public void newWord()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = Microphone.Start("", true, 10, 44100);
+#endif
+
 
         updateOn = true;
         string chosen = WordBase.getRandFromCSV(group);
 
-        if(WordBase.termData.terms[chosen][1] != null)
+        if (WordBase.termData.terms[chosen][1] != null)
             StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][1], image));
         else { image.GetComponent<Image>().sprite = card; }
         results.text = chosen;
 
-       
+
         cGrop = WordBase.termData.terms[chosen][0];
         correct = chosen;
         string[] t = new[] { correct };
@@ -49,20 +60,36 @@ public class GetWords : MonoBehaviour
         {
             sentence = true;
             record.gameObject.SetActive(true);
+            speech.gameObject.SetActive(false);
+
         }
-        else { sentence = false; record.gameObject.SetActive(false); }
-        if (word != null && !sentence)
+        else
         {
-            recognizer = new KeywordRecognizer(t, confidence);
+            sentence = false; record.gameObject.SetActive(false);
+#if !(UNITY_EDITOR || UNITY_STANDALONE)
+            speech.gameObject.SetActive(true);
+#endif
+        }
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (word != null && !sentence)
+          {
+            recognizer = new KeywordRecognizer(t, ConfidenceLevel.High);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
             recognizer.Start();
         }
+#endif
     }
+#if UNITY_EDITOR || UNITY_STANDALONE
+        private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+        {
+            word = args.text;
 
+        }
+#endif
     private void Start()
     {
 
-        thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -5000);
+        thi.SetActive(false);
 
         results.text = "Press the New Word Button";
         //difficulty = DropdownFill.difficulty;
@@ -71,52 +98,50 @@ public class GetWords : MonoBehaviour
         {
             sentence = true;
             record.gameObject.SetActive(true);
+            speech.gameObject.SetActive(false);
+
         }
         else { sentence = false; }
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        speech.gameObject.SetActive(false);
+#endif
+
     }
-
-    private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
-    {
-        word = args.text;
-
-    }
-
     private void Update()
     {
-        
-        if (word == correct && updateOn == true)
+
+        if (word.ToLower().Equals(correct.ToLower()) && updateOn == true)
         {
+#if UNITY_EDITOR || UNITY_STANDALONE
             audioSource.Play();
-            //Speech.instance.Say(word);
             Microphone.End(null);
+            recognizer.Stop();
+
+#endif
+
 
             results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly!";
             globalScore.score += 1;
-
             globalScore.coins += 1;
-            Debug.Log(cGrop);
+#if !(UNITY_EDITOR || UNITY_STANDALONE)
+                      sample.OnClickSpeaks(word);
+#endif
             WordBase.termData.groupScore[cGrop] += 1;
             PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
             PlayerPrefs.SetFloat("Score", globalScore.score);
+            thi.SetActive(false);
 
-            recognizer.Stop();
-            updateOn = false;
             word = "";
             spaceMove.frozen = false;
-            thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -5000);
-            Time.timeScale = 1;
-         
+            updateOn = false;
+
+
 
             // SceneManager.LoadScene("Flashcards");
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        if (recognizer != null && recognizer.IsRunning)
-        {
-            recognizer.OnPhraseRecognized -= Recognizer_OnPhraseRecognized;
-            recognizer.Stop();
-        }
-    }
+
+
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class movementSideScroll : MonoBehaviour
 {
     public Animator anim;
-   
+
     public float moveSpeed = 20f;
     public FixedJoystick joystick;
     float horizontalMove = 0f;
@@ -21,44 +21,47 @@ public class movementSideScroll : MonoBehaviour
     public GameObject mi;
     public Transform gamPos;
     public GameObject ui;
+    private float hMove;
+    private float vMove;
 
     void Start()
     {
         globalScore.coins = 0;
         health = healthMax;
+        Time.timeScale = 1;
+
     }
     void FixedUpdate()
     {
-        if(player.position.y < -30)
+        hMove = Input.GetAxisRaw("Horizontal");
+        vMove = Input.GetAxisRaw("Vertical");
+        if (player.position.y < -30)
         {
             health = 0;
             healthBar.fillAmount = 0;
-          
+
         }
-        if(health <= 0)
+        if (health <= 0)
         {
             GameOver.SetActive(true);
             playerz.SetActive(false);
             globalScore.coins = 0;
         }
-        if (joystick.Horizontal >= 0.2f)
+        if (joystick.Horizontal >= 0.2f || hMove >= 0.1f)
         {
             coinTxt.text = "Coin: " + globalScore.coins;
             horizontalMove = moveSpeed;
-             anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            transform.localScale = new Vector2(1, transform.localScale.y);
-            anim.SetBool("isJumping", false);
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         }
-        else if (joystick.Horizontal <= -0.2f)
+        else if (joystick.Horizontal <= -0.2f || hMove <= -0.1f)
         {
             coinTxt.text = "Coin: " + globalScore.coins;
             horizontalMove = -moveSpeed;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            transform.localScale = new Vector2(-1, transform.localScale.y);
+            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
             anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
-            anim.SetBool("isJumping", false);
-
         }
         else
         {
@@ -66,14 +69,12 @@ public class movementSideScroll : MonoBehaviour
             horizontalMove = 0f;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
-            anim.SetBool("isJumping", false);
         }
-        if(joystick.Vertical >= 0.7f && isGrounded == true)
+        if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && isGrounded == true)
         {
             Jump();
-           anim.SetBool("isJumping", true);
         }
-       
+
     }
     void Jump()
     {
@@ -88,9 +89,9 @@ public class movementSideScroll : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-            //Time.timeScale = 0;
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
 
+            ui.SetActive(true);
         }
         if (collision.collider.tag == "Enemy")
         {

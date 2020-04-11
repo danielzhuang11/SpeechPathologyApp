@@ -10,8 +10,10 @@ public class backgroundScrollSpace : MonoBehaviour
 
     private float xVelocity;
     public float velLim = 5;
+    public bool isBlock = false;
+    private float hMove;
     private void Awake()
-    {
+    {   
         material = GetComponent<Renderer>().material;
     }
     void Start()
@@ -22,8 +24,19 @@ public class backgroundScrollSpace : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        xVelocity = joystick.Horizontal / velLim;
-        offset = new Vector2(xVelocity, 0);
-        material.mainTextureOffset += offset * Time.deltaTime;
+        hMove = Input.GetAxisRaw("Horizontal");
+        if (!isBlock)
+        {
+            if (hMove > 0.1f || hMove < -0.1f)
+            {
+                xVelocity = hMove / velLim;
+            }
+            else
+            {
+                xVelocity = joystick.Horizontal / velLim;
+            }
+            offset = new Vector2(xVelocity, 0);
+            material.mainTextureOffset += offset * Time.deltaTime;
+        }
     }
 }

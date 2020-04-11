@@ -7,7 +7,7 @@ public class rewardScoreDisp : MonoBehaviour
 {
     public Text scoreD;
 
-    void FixedUpdate()
+    void Update()
     {
         scoreD.text = "Score:" + globalScore.score;
     }
