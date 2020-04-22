@@ -23,13 +23,14 @@ public class movementSideScroll : MonoBehaviour
     public GameObject ui;
     private float hMove;
     private float vMove;
+    private Rigidbody2D rigid;
 
     void Start()
     {
         globalScore.coins = 0;
         health = healthMax;
         Time.timeScale = 1;
-
+        rigid = playerz.GetComponent<Rigidbody2D>();
     }
     void FixedUpdate()
     {
@@ -90,7 +91,7 @@ public class movementSideScroll : MonoBehaviour
         if (collision.collider.tag == "Coin")
         {
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
-
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             ui.SetActive(true);
         }
         if (collision.collider.tag == "Enemy")

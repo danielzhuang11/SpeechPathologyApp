@@ -1752,6 +1752,7 @@ MonoBehaviour:
   record: {fileID: 1613366951}
   speech: {fileID: 1607103357}
   sample: {fileID: 917685013}
+  player: {fileID: 2000560125326566688}
 --- !u!1 &1307557723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +1969,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2000560125326566687}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2000560125326566688}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3882a15d74684848a6663f05ae4ae93, type: 3}
@@ -2968,7 +2969,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1718708850
 RectTransform:
@@ -3288,7 +3289,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 4
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3317,7 +3318,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3664,10 +3665,42 @@ PrefabInstance:
       propertyPath: qua
       value: 
       objectReference: {fileID: 1635315914}
+    - target: {fileID: 773594748, guid: 7a717a032d3f20c47893eaf4fe018bd6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 06f7112d07b70494b80d197cf675db33, type: 2}
     - target: {fileID: 1004657882, guid: 7a717a032d3f20c47893eaf4fe018bd6, type: 3}
       propertyPath: qua
       value: 
       objectReference: {fileID: 1635315914}
+    - target: {fileID: 1004657883, guid: 7a717a032d3f20c47893eaf4fe018bd6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004657883, guid: 7a717a032d3f20c47893eaf4fe018bd6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 06f7112d07b70494b80d197cf675db33, type: 2}
+    - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.235
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2000560126631983623, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: joystick
@@ -3763,6 +3796,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2000560126631983626, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.95
+      objectReference: {fileID: 0}
     - target: {fileID: 2000560126631983628, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Name
@@ -3770,6 +3808,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a717a032d3f20c47893eaf4fe018bd6, type: 3}
+--- !u!1 &2000560125326566688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2000560126631983628, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2000560125326566687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4250923656175885719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4075,7 +4119,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &9085434648243456172
 MonoBehaviour:
@@ -4443,7 +4487,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0

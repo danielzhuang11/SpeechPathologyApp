@@ -25,6 +25,7 @@ public class wordForGame : MonoBehaviour
     protected string word = "";
     public GameObject player;
     public GameObject other;
+    private Rigidbody2D rigid;
 
     public bool updateOn = true;
     private static System.Timers.Timer aTimer;
@@ -70,7 +71,10 @@ public class wordForGame : MonoBehaviour
 
             recognizer.Stop();
             updateOn = false;
-            player.SetActive(true);
+            rigid = player.GetComponent<Rigidbody2D>();
+            rigid.constraints = RigidbodyConstraints2D.None;
+            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             other.SetActive(true);
             Destroy(you);
 
