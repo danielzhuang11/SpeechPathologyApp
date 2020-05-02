@@ -6,6 +6,7 @@ public class tropy : MonoBehaviour
 {
     public float require;
     public GameObject trphie;
+    public GameObject trSh;
     void Update()
     {
    //     Debug.Log("updating");
@@ -14,6 +15,7 @@ public class tropy : MonoBehaviour
         {
            // Debug.Log("score");
             trphie.SetActive(true);
+            trSh.SetActive(false);
         }
        
     }

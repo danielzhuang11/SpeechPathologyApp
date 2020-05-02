@@ -17,6 +17,7 @@ public class spaceMove : MonoBehaviour
     public GameObject playerz;
     public Text score;
     public GameObject ui;
+    private float hMove;
 
     public static bool frozen = false;
     void Start()
@@ -28,7 +29,7 @@ public class spaceMove : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
+        hMove = Input.GetAxisRaw("Horizontal");
         if (health <= 0)
         {
             GameOver.SetActive(true);
@@ -38,14 +39,14 @@ public class spaceMove : MonoBehaviour
 
 
         }
-        if (joystick.Horizontal >= 0.2f)
+        if (joystick.Horizontal >= 0.2f||hMove>=0.1f)
         {
             score.text = "Score: " + globalScore.coins;
             horizontalMove = moveSpeed;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             
         }
-        else if (joystick.Horizontal <= -0.2f)
+        else if (joystick.Horizontal <= -0.2f||hMove<=-.1f)
         {
             score.text = "Score: " + globalScore.coins;
             horizontalMove = -moveSpeed;

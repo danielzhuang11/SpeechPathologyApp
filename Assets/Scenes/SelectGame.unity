@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -885,7 +886,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 00dbba75048c3dd4da7570c8ba05e30d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56457a0588b7d07488fe6334a366b02a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -10,6 +10,7 @@ public class SceneSwitcher : MonoBehaviour
     }
     public void GotoGameSelectorScene()
     {
+        spaceMove.frozen = false;
         SceneManager.LoadScene("SelectGame");
     }
 
