@@ -7,7 +7,10 @@ using UnityEngine.EventSystems;
 //Use the PointerDown and PointerUP interfaces to detect a mouse down and up on a ui element
 public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public  GameObject thi;
+
+    static string cGrop;
+
+    public GameObject thi;
 
 
     AudioClip recording;
@@ -40,13 +43,23 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //Play recording
         audioSource.clip = recording;
         audioSource.Play();
+
+
         globalScore.coins += 1;
         globalScore.score += 1;
-
+        WordBase.termData.groupScore[cGrop] += 1;
+        PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
+        PlayerPrefs.SetFloat("Score", globalScore.score);
         spaceMove.frozen = false;
 
         thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
 
+
+    }
+
+    public static void updateChosen(string chosen)
+    {
+        cGrop = WordBase.termData.terms[chosen][0];
 
     }
 
@@ -56,6 +69,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         int minFreq;
         int maxFreq;
         int freq = 44100;
+        Time.timeScale = 1;
         Microphone.GetDeviceCaps("", out minFreq, out maxFreq);
         if (maxFreq < 44100)
             freq = maxFreq;

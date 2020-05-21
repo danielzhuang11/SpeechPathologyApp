@@ -28,8 +28,6 @@ public class GetWords : MonoBehaviour
     public Button record;
     public Button speech;
     public SampleSpeechToText sample;
-    public GameObject player;
-    private Rigidbody2D rigid;
 #if UNITY_EDITOR || UNITY_STANDALONE
 
     protected PhraseRecognizer recognizer;
@@ -63,6 +61,8 @@ public class GetWords : MonoBehaviour
             sentence = true;
             record.gameObject.SetActive(true);
             speech.gameObject.SetActive(false);
+
+            AudioRecorder.updateChosen(chosen);
 
         }
         else
@@ -126,11 +126,8 @@ public class GetWords : MonoBehaviour
             results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly!";
             globalScore.score += 1;
             globalScore.coins += 1;
-            rigid = player.GetComponent<Rigidbody2D>();
-            rigid.constraints = RigidbodyConstraints2D.None;
-            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
 #if !(UNITY_EDITOR || UNITY_STANDALONE)
-                      sample.OnClickSpeaks(word);
+            sample.OnClickSpeaks(word);
 #endif
             WordBase.termData.groupScore[cGrop] += 1;
             PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
