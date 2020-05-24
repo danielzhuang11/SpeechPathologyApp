@@ -8,6 +8,7 @@ TagManager:
   - Health
   - Enemy
   - Coin
+  - Qua
   layers:
   - Default
   - TransparentFX

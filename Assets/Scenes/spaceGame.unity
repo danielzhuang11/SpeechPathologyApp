@@ -372,7 +372,6 @@ MonoBehaviour:
   record: {fileID: 112754627}
   speech: {fileID: 1198891518}
   sample: {fileID: 2126588248}
-  player: {fileID: 490251169}
 --- !u!114 &232140702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,7 +4074,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rock:
-  - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2294198788834270165, guid: 83bf96a8c9edf764dbdf333ff785a352, type: 3}
   spawn:
