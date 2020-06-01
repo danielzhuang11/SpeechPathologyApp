@@ -91,7 +91,6 @@ public class movementSideScroll : MonoBehaviour
         if (collision.collider.tag == "Coin")
         {
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
-            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             ui.SetActive(true);
         }
         if (collision.collider.tag == "Enemy")
