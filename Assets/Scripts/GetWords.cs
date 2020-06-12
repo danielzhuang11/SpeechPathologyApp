@@ -28,6 +28,8 @@ public class GetWords : MonoBehaviour
     public Button record;
     public Button speech;
     public SampleSpeechToText sample;
+    public ConfidenceLevel conLvl = ConfidenceLevel.High;
+    private int conInt = 2;
 #if UNITY_EDITOR || UNITY_STANDALONE
 
     protected PhraseRecognizer recognizer;
@@ -35,7 +37,6 @@ public class GetWords : MonoBehaviour
 
 
     private static System.Timers.Timer aTimer;
-
     public void newWord()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -75,7 +76,18 @@ public class GetWords : MonoBehaviour
 #if UNITY_EDITOR || UNITY_STANDALONE
         if (word != null && !sentence)
           {
-            recognizer = new KeywordRecognizer(t, ConfidenceLevel.High);
+            if(PlayerPrefs.HasKey("diff"))
+                conInt = PlayerPrefs.GetInt("diff");
+            if (conInt == 2)
+                conLvl = ConfidenceLevel.High;
+            else if(conInt == 1)
+                conLvl = ConfidenceLevel.Medium;
+            else if(conInt == 0)
+            {
+                conLvl = ConfidenceLevel.Low;
+            }
+            recognizer = new KeywordRecognizer(t, conLvl);
+            Debug.Log(conLvl);
             recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
             recognizer.Start();
         }
