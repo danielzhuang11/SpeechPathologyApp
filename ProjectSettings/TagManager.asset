@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - Coin
   - Qua
+  - intCC
+  - loBar
+  - loloBar
   layers:
   - Default
   - TransparentFX
