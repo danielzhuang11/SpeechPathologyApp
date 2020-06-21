@@ -7,6 +7,7 @@ public class DropdownFill : MonoBehaviour
 {
     public static string difficulty;
     public static string group ;
+    public static bool ready=false;
     // Start is called before the first frame update
     //public Dropdown dropdownd;
     public static List<string> groups;
@@ -38,6 +39,7 @@ public class DropdownFill : MonoBehaviour
 
       //  dropdowng.options.Add(item);
         dropdowng.AddOptions(groups);
+        ready = true;
 
     }
    /* void PopulateListD()

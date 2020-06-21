@@ -6,7 +6,7 @@ public class rockSpawn : MonoBehaviour
 {
     public List<GameObject> rock;
     public List<Transform> spawn;
-    public float reload = 3f;
+    public float reload = 0f;
     private float timeTill;
     void Update()
     {
@@ -18,7 +18,7 @@ public class rockSpawn : MonoBehaviour
                 Instantiate(rock[Random.Range(0, rock.Count)], spawn[Random.Range(0, spawn.Count)].position, Quaternion.identity);
                 timeTill = 0;
             }
-            if (globalScore.coins % 3 == 0 && reload > 1)
+            if (globalScore.coins > 0 && globalScore.coins % 3 == 0 && reload > 1)
             {
                 reload = 3 - globalScore.coins / 3;
             }

@@ -6,8 +6,6 @@ using UnityEngine.Assertions;
 public class Loader : MonoBehaviour
 {
 
-  
-
     public void Load()
     {
         StartCoroutine(CSVDownloader.DownloadData(AfterDownload));
@@ -128,7 +126,6 @@ public class Loader : MonoBehaviour
     private static void ProcessLineFromCSV(List<string> currLineElements, int currLineIndex)
     {
 
-
         // This line contains the column headers, telling us which languages are in which column
        
         // This is a normal node
@@ -165,6 +162,7 @@ public class Loader : MonoBehaviour
                 }
 
                 WordBase.termData.terms[word] = new string[] {terms[0], terms[1] };
+                globalScore.lo += 1;
 
             }
             if (WordBase.termData.groupScore.Count < WordBase.termData.groups.Count)
@@ -173,7 +171,7 @@ public class Loader : MonoBehaviour
                    {
                        if(pos>=WordBase.termData.groupScore.Count)
                        WordBase.termData.groupScore.Add(WordBase.termData.groups[pos], PlayerPrefs.GetInt(WordBase.termData.groups[pos],0));
-
+                    
                    }
                    
             }

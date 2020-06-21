@@ -6,6 +6,7 @@ public static class globalScore
 {
     public static float score;
     public static float coins;
+    public static int lo=0;
 
     public static void start()
     {
