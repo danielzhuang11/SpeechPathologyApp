@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using TMPro;
 public class spaceMove : MonoBehaviour
 {
    
@@ -18,6 +18,8 @@ public class spaceMove : MonoBehaviour
     public Text score;
     public GameObject ui;
     private float hMove;
+    public TextMeshProUGUI results;
+
 
     public static bool frozen = false;
     void Start()
@@ -78,6 +80,7 @@ public class spaceMove : MonoBehaviour
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
             score.text = "Score: " + globalScore.coins;
             ui.SetActive(true);
+            results.text = "Press the New Word Button";
             frozen = true;
 
 

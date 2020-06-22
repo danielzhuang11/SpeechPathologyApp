@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class movementSideScroll : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class movementSideScroll : MonoBehaviour
     private float hMove;
     private float vMove;
     private Rigidbody2D rigid;
+    private float jumpCoolDown = 0.1f;
+    private float timeTill = 0f;
+    public TextMeshProUGUI results;
 
     void Start()
     {
@@ -31,6 +35,11 @@ public class movementSideScroll : MonoBehaviour
         health = healthMax;
         Time.timeScale = 1;
         rigid = playerz.GetComponent<Rigidbody2D>();
+    }
+    void Update()
+    {
+        timeTill += Time.deltaTime;
+        Debug.Log(timeTill);
     }
     void FixedUpdate()
     {
@@ -71,8 +80,9 @@ public class movementSideScroll : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
             anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
         }
-        if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && isGrounded == true)
+        if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && isGrounded == true && timeTill > jumpCoolDown)
         {
+            timeTill = 0;
             Jump();
         }
 
@@ -92,6 +102,8 @@ public class movementSideScroll : MonoBehaviour
         {
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
             ui.SetActive(true);
+            results.text = "Press the New Word Button";
+
         }
         if (collision.collider.tag == "Enemy")
         {

@@ -7,7 +7,7 @@ public class Setup : MonoBehaviour
 {
     public static Setup Instance;
     public GameObject Settings;
-    public GameObject diff;
+    public GameObject Controls;
 
     public static string[] email;
     public TextMeshProUGUI ptsD;
@@ -34,9 +34,14 @@ public class Setup : MonoBehaviour
     public void OpenSettings()
     {
         Settings.SetActive(true);
-        if (Application.platform == RuntimePlatform.WindowsPlayer)
-        {
-            diff.SetActive(true);
-        }
+        
+    }
+    public void OpenControls()
+    {
+        Controls.SetActive(true);
+    }
+    public void CloseControls()
+    {
+        GameObject.Find("Controls").SetActive(false);
     }
 }

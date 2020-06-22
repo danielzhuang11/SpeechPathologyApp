@@ -23,6 +23,13 @@ public class grounded : MonoBehaviour
             Player.GetComponent<movementSideScroll>().isGrounded = true;
         }
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "Enemy")
+        {
+            Player.GetComponent<movementSideScroll>().isGrounded = true;
+        }
+    }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.tag == "Ground"||collision.collider.tag == "Enemy")

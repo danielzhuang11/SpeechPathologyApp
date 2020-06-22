@@ -135,7 +135,7 @@ public class GetWords : MonoBehaviour
 #endif
 
 
-            results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly!";
+            results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly! " + "\n" + "Your audio is being played back";
             globalScore.score += 1;
             globalScore.coins += 1;
 #if !(UNITY_EDITOR || UNITY_STANDALONE)
