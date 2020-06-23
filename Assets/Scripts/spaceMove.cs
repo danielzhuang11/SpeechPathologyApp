@@ -31,7 +31,9 @@ public class spaceMove : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         hMove = Input.GetAxisRaw("Horizontal");
+        
         if (health <= 0)
         {
             GameOver.SetActive(true);
@@ -50,6 +52,7 @@ public class spaceMove : MonoBehaviour
         }
         else if (joystick.Horizontal <= -0.2f||hMove<=-.1f)
         {
+            
             score.text = "Score: " + globalScore.coins;
             horizontalMove = -moveSpeed;
             GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);

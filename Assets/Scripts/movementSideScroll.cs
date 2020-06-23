@@ -39,7 +39,7 @@ public class movementSideScroll : MonoBehaviour
     void Update()
     {
         timeTill += Time.deltaTime;
-        Debug.Log(timeTill);
+
     }
     void FixedUpdate()
     {
