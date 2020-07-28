@@ -19,6 +19,7 @@ public class spaceMove : MonoBehaviour
     public GameObject ui;
     private float hMove;
     public TextMeshProUGUI results;
+    public GameObject gameController;
 
 
     public static bool frozen = false;
@@ -77,10 +78,12 @@ public class spaceMove : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
+
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
             score.text = "Score: " + globalScore.coins;
             ui.SetActive(true);
-            results.text = "Press the New Word Button";
+            gameController.GetComponent<GetWords>().newWord();
+            //results.text = "Press the New Word Button";
             frozen = true;
 
 

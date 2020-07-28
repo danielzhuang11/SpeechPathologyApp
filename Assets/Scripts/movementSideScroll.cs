@@ -23,6 +23,7 @@ public class movementSideScroll : MonoBehaviour
     public Transform gamPos;
     public GameObject ui;
     private float hMove;
+    public GameObject gameController;
     private float vMove;
     private Rigidbody2D rigid;
     private float jumpCoolDown = 0.1f;
@@ -102,7 +103,9 @@ public class movementSideScroll : MonoBehaviour
         {
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
             ui.SetActive(true);
-            results.text = "Press the New Word Button";
+            gameController.GetComponent<GetWords>().newWord();
+
+            //results.text = "Press the New Word Button";
 
         }
         if (collision.collider.tag == "Enemy")
