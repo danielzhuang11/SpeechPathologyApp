@@ -19,6 +19,7 @@ public class spaceMove : MonoBehaviour
     public GameObject ui;
     private float hMove;
     public TextMeshProUGUI results;
+    public GameObject flaCo;
 
 
     public static bool frozen = false;
@@ -31,7 +32,6 @@ public class spaceMove : MonoBehaviour
     }
     void FixedUpdate()
     {
-
         hMove = Input.GetAxisRaw("Horizontal");
         
         if (health <= 0)
@@ -43,29 +43,32 @@ public class spaceMove : MonoBehaviour
 
 
         }
-        if (joystick.Horizontal >= 0.2f||hMove>=0.1f)
+        if (!flaCo.activeInHierarchy)
         {
-            score.text = "Score: " + globalScore.coins;
-            horizontalMove = moveSpeed;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            
-        }
-        else if (joystick.Horizontal <= -0.2f||hMove<=-.1f)
-        {
-            
-            score.text = "Score: " + globalScore.coins;
-            horizontalMove = -moveSpeed;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            
-            
+            if (joystick.Horizontal >= 0.2f || hMove >= 0.1f)
+            {
+                score.text = "Score: " + globalScore.coins;
+                horizontalMove = moveSpeed;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
 
-        }
-        else
-        {
-            score.text = "Score: " + globalScore.coins;
-            horizontalMove = 0f;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-           
+            }
+            else if (joystick.Horizontal <= -0.2f || hMove <= -.1f)
+            {
+
+                score.text = "Score: " + globalScore.coins;
+                horizontalMove = -moveSpeed;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+
+
+
+            }
+            else
+            {
+                score.text = "Score: " + globalScore.coins;
+                horizontalMove = 0f;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+
+            }
         }
         
 

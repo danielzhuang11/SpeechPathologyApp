@@ -87,6 +87,7 @@ public class SceneSwitcher : MonoBehaviour
     {
         Time.timeScale = 1;
         spaceMove.frozen = false;
+        pause.isPaused = false;
         SceneManager.LoadScene("SelectGame");
     }
 

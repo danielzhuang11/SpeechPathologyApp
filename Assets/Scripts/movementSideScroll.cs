@@ -28,7 +28,8 @@ public class movementSideScroll : MonoBehaviour
     private float jumpCoolDown = 0.1f;
     private float timeTill = 0f;
     public TextMeshProUGUI results;
-
+    public GameObject flashContainer;
+    public static bool movin;
     void Start()
     {
         globalScore.coins = 0;
@@ -43,47 +44,55 @@ public class movementSideScroll : MonoBehaviour
     }
     void FixedUpdate()
     {
-        hMove = Input.GetAxisRaw("Horizontal");
-        vMove = Input.GetAxisRaw("Vertical");
-        if (player.position.y < -30)
+        if (!flashContainer.activeInHierarchy)
         {
-            health = 0;
-            healthBar.fillAmount = 0;
+            movin = true;
+            hMove = Input.GetAxisRaw("Horizontal");
+            vMove = Input.GetAxisRaw("Vertical");
+            if (player.position.y < -30)
+            {
+                health = 0;
+                healthBar.fillAmount = 0;
 
-        }
-        if (health <= 0)
-        {
-            GameOver.SetActive(true);
-            playerz.SetActive(false);
-            globalScore.coins = 0;
-        }
-        if (joystick.Horizontal >= 0.2f || hMove >= 0.1f)
-        {
-            coinTxt.text = "Coin: " + globalScore.coins;
-            horizontalMove = moveSpeed;
-            anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
-        }
-        else if (joystick.Horizontal <= -0.2f || hMove <= -0.1f)
-        {
-            coinTxt.text = "Coin: " + globalScore.coins;
-            horizontalMove = -moveSpeed;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
-            anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            }
+            if (health <= 0)
+            {
+                GameOver.SetActive(true);
+                playerz.SetActive(false);
+                globalScore.coins = 0;
+            }
+            if (joystick.Horizontal >= 0.2f || hMove >= 0.1f)
+            {
+                coinTxt.text = "Coin: " + globalScore.coins;
+                horizontalMove = moveSpeed;
+                anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+                transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            }
+            else if (joystick.Horizontal <= -0.2f || hMove <= -0.1f)
+            {
+                coinTxt.text = "Coin: " + globalScore.coins;
+                horizontalMove = -moveSpeed;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+                transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+                anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            }
+            else
+            {
+                coinTxt.text = "Coin: " + globalScore.coins;
+                horizontalMove = 0f;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+                anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            }
+            if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && isGrounded == true && timeTill > jumpCoolDown)
+            {
+                timeTill = 0;
+                Jump();
+            }
         }
         else
         {
-            coinTxt.text = "Coin: " + globalScore.coins;
-            horizontalMove = 0f;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
-        }
-        if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && isGrounded == true && timeTill > jumpCoolDown)
-        {
-            timeTill = 0;
-            Jump();
+            movin = false;
         }
 
     }
