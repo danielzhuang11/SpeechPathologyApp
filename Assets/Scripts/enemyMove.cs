@@ -15,20 +15,24 @@ public class enemyMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        move -= 1;
-        if (move > 0)
+        if (movementSideScroll.movin)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
-            
+            move -= 1;
+            if (move > 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+
+            }
+            else if (move < 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+
+            }
+            if (move < -200)
+            {
+                move = 200;
+            }
         }
-        else if(move < 0)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
-            
-        }
-        if(move < -200)
-        {
-            move = 200;
-        }
+       
     }
 }

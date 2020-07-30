@@ -12,6 +12,8 @@ public class backgroundScrollSpace : MonoBehaviour
     public float velLim = 5;
     public bool isBlock = false;
     private float hMove;
+    public GameObject gaOv;
+    public GameObject flashContain;
     private void Awake()
     {   
         material = GetComponent<Renderer>().material;
@@ -24,19 +26,22 @@ public class backgroundScrollSpace : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        hMove = Input.GetAxisRaw("Horizontal");
-        if (!isBlock)
+        if (!gaOv.activeInHierarchy && !flashContain.activeInHierarchy)
         {
-            if (hMove > 0.1f || hMove < -0.1f)
+            hMove = Input.GetAxisRaw("Horizontal");
+            if (!isBlock)
             {
-                xVelocity = hMove / velLim;
+                if (hMove > 0.1f || hMove < -0.1f)
+                {
+                    xVelocity = hMove / velLim;
+                }
+                else
+                {
+                    xVelocity = joystick.Horizontal / velLim;
+                }
+                offset = new Vector2(xVelocity, 0);
+                material.mainTextureOffset += offset * Time.deltaTime;
             }
-            else
-            {
-                xVelocity = joystick.Horizontal / velLim;
-            }
-            offset = new Vector2(xVelocity, 0);
-            material.mainTextureOffset += offset * Time.deltaTime;
         }
     }
 }

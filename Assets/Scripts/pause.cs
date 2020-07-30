@@ -5,20 +5,23 @@ using UnityEngine;
 public class pause : MonoBehaviour
 {
     public GameObject pMenu;
-    bool isPaused = false;
+    public static bool isPaused = false;
     public void pauseGame()
     {
+        
         if (isPaused)
         {
+            Debug.Log("PogChamp");
             Time.timeScale = 1;
             isPaused = false;
             pMenu.SetActive(false);
         }
         else
         {
-            pMenu.SetActive(true);
-            Time.timeScale = 0;
+            Debug.Log("Pepega");
             isPaused = true;
+            pMenu.SetActive(true);          
+            Time.timeScale = 0;
         }
     }
 }

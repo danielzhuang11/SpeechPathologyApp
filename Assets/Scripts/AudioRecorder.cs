@@ -51,6 +51,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
         PlayerPrefs.SetFloat("Score", globalScore.score);
         spaceMove.frozen = false;
+        //thi.SetActive(false);
 
         thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
 

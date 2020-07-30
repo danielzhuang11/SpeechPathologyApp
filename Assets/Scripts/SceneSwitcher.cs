@@ -64,12 +64,17 @@ public class SceneSwitcher : MonoBehaviour
                 GameObject intCh = GameObject.FindGameObjectWithTag("intCC");
                 GameObject childInt = intCh.transform.GetChild(0).gameObject;
                 childInt.SetActive(false);
-            }
-            if (globalScore.lo < 200 && DropdownFill.ready==false)
-            {
-                GameObject loBar = GameObject.FindGameObjectWithTag("loBar");
-                GameObject childBar = loBar.transform.GetChild(0).gameObject;
-                childBar.SetActive(true);
+
+                if (globalScore.lo < 200 && DropdownFill.ready == false)
+                {
+                    GameObject loBar = GameObject.FindGameObjectWithTag("loBar");
+                    GameObject childBar = loBar.transform.GetChild(0).gameObject;
+                    childBar.SetActive(true);
+                }
+                else
+                {
+                    SceneManager.LoadScene("SelectDifficulty");
+                }
             }
             else
             {
@@ -81,8 +86,8 @@ public class SceneSwitcher : MonoBehaviour
     public void GotoGameSelectorScene()
     {
         Time.timeScale = 1;
-
         spaceMove.frozen = false;
+        pause.isPaused = false;
         SceneManager.LoadScene("SelectGame");
     }
 

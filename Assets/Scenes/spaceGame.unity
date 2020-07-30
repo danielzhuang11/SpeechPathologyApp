@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 511bdb769389d4e448892833c8354b4d,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6770d56a6999f4e4bafe01a1cc4657e7,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -908,12 +908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496530211}
   m_CullTransparentMesh: 0
---- !u!1 &507897147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 309438322527610501, guid: 269f4f9641648994f849cbbbb515fae5,
-    type: 3}
-  m_PrefabInstance: {fileID: 309438321708836909}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &565640994
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +939,7 @@ RectTransform:
   m_Children:
   - {fileID: 452572355}
   m_Father: {fileID: 1205559352}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10711502, y: 0.13221498}
   m_AnchorMax: {x: 0.9021244, y: 0.86036044}
@@ -1946,12 +1940,12 @@ RectTransform:
   m_Children:
   - {fileID: 1567844658}
   m_Father: {fileID: 1205559352}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.5, y: -24}
-  m_SizeDelta: {x: 1117, y: 520}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1378, y: 634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &941558655
 GameObject:
@@ -2310,7 +2304,7 @@ PrefabInstance:
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
@@ -2424,7 +2418,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1205559352}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06010687, y: 1}
   m_AnchorMax: {x: 0.3164514, y: 1}
@@ -2731,13 +2725,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2104082723}
   - {fileID: 1153286820}
+  - {fileID: 2104082723}
   - {fileID: 1835090893}
   - {fileID: 1392970018}
   - {fileID: 1820266418}
-  - {fileID: 932859754}
   - {fileID: 565640995}
+  - {fileID: 932859754}
   - {fileID: 1577526116}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -3060,7 +3054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1567844658
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4131,19 +4125,14 @@ PrefabInstance:
       objectReference: {fileID: 941558656}
     - target: {fileID: 222928645239896407, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
-      propertyPath: moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: flaCo
+      value: 
+      objectReference: {fileID: 1567844657}
     - target: {fileID: 222928645239896407, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
-      propertyPath: playerz
+      propertyPath: img
       value: 
-      objectReference: {fileID: 507897147}
-    - target: {fileID: 222928645239896407, guid: 269f4f9641648994f849cbbbb515fae5,
-        type: 3}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 232140700}
+      objectReference: {fileID: 679353340}
     - target: {fileID: 309438322527610497, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
       propertyPath: m_UsedByComposite
@@ -4153,21 +4142,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Simulated
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 309438322527610499, guid: 269f4f9641648994f849cbbbb515fae5,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 309438322527610499, guid: 269f4f9641648994f849cbbbb515fae5,
-        type: 3}
-      propertyPath: m_UseAutoMass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 309438322527610499, guid: 269f4f9641648994f849cbbbb515fae5,
-        type: 3}
-      propertyPath: m_Mass
-      value: 3.5791998
       objectReference: {fileID: 0}
     - target: {fileID: 309438322527610501, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}

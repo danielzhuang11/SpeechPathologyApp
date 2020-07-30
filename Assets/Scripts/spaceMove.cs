@@ -12,6 +12,7 @@ public class spaceMove : MonoBehaviour
     public float healthMax = 5f;
     public Transform player;
     public Image healthBar;
+    public Image img;
     private float health;
     public GameObject GameOver;
     public GameObject playerz;
@@ -19,7 +20,6 @@ public class spaceMove : MonoBehaviour
     public GameObject ui;
     private float hMove;
     public TextMeshProUGUI results;
-    public GameObject gameController;
 
 
     public static bool frozen = false;
@@ -33,6 +33,7 @@ public class spaceMove : MonoBehaviour
     void FixedUpdate()
     {
         hMove = Input.GetAxisRaw("Horizontal");
+        
         if (health <= 0)
         {
             GameOver.SetActive(true);
@@ -42,28 +43,32 @@ public class spaceMove : MonoBehaviour
 
 
         }
-        if (joystick.Horizontal >= 0.2f||hMove>=0.1f)
+        if (ui.transform.position.z<-2000)
         {
-            score.text = "Score: " + globalScore.coins;
-            horizontalMove = moveSpeed;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            
-        }
-        else if (joystick.Horizontal <= -0.2f||hMove<=-.1f)
-        {
-            score.text = "Score: " + globalScore.coins;
-            horizontalMove = -moveSpeed;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-            
-            
+            if (joystick.Horizontal >= 0.2f || hMove >= 0.1f)
+            {
+                score.text = "Score: " + globalScore.coins;
+                horizontalMove = moveSpeed;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
 
-        }
-        else
-        {
-            score.text = "Score: " + globalScore.coins;
-            horizontalMove = 0f;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
-           
+            }
+            else if (joystick.Horizontal <= -0.2f || hMove <= -.1f)
+            {
+
+                score.text = "Score: " + globalScore.coins;
+                horizontalMove = -moveSpeed;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+
+
+
+            }
+            else
+            {
+                score.text = "Score: " + globalScore.coins;
+                horizontalMove = 0f;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
+
+            }
         }
         
 
@@ -78,12 +83,12 @@ public class spaceMove : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-
             ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
             score.text = "Score: " + globalScore.coins;
             ui.SetActive(true);
-            gameController.GetComponent<GetWords>().newWord();
-            //results.text = "Press the New Word Button";
+            img.sprite = null;
+
+            results.text = "Press the New Word Button";
             frozen = true;
 
 

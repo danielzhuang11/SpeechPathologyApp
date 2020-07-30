@@ -13,6 +13,9 @@ using UnityEngine.Audio;
 #endif
 public class GetWords : MonoBehaviour
 {
+
+
+
     public Image image;
     public string cGrop;
     public string correct;
@@ -103,7 +106,8 @@ public class GetWords : MonoBehaviour
     private void Start()
     {
 
-        thi.SetActive(false);
+        thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
+
 
         results.text = "Press the New Word Button";
         //difficulty = DropdownFill.difficulty;
@@ -144,7 +148,7 @@ public class GetWords : MonoBehaviour
             WordBase.termData.groupScore[cGrop] += 1;
             PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
             PlayerPrefs.SetFloat("Score", globalScore.score);
-            thi.SetActive(false);
+            thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
 
             word = "";
             spaceMove.frozen = false;
