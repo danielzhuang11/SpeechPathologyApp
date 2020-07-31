@@ -26,7 +26,7 @@ public class backgroundScrollSpace : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!gaOv.activeInHierarchy && !flashContain.activeInHierarchy)
+        if (!gaOv.activeInHierarchy && flashContain.transform.position.z < -2000)
         {
             hMove = Input.GetAxisRaw("Horizontal");
             if (!isBlock)

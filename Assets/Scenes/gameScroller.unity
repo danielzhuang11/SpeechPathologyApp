@@ -2463,7 +2463,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -2480,7 +2480,7 @@ MonoBehaviour:
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
-  m_textAlignment: 257
+  m_textAlignment: 65535
   m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4421,12 +4421,12 @@ PrefabInstance:
     - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 1.405
       objectReference: {fileID: 0}
     - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 2000560126631983623, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
