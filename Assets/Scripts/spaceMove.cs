@@ -83,7 +83,7 @@ public class spaceMove : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
-            ui.transform.position = new Vector3(ui.transform.position.x, ui.transform.position.y, 0);
+            ui.transform.position = new Vector3(ui.transform.position.x, GetWords.y, 0);
             score.text = "Score: " + globalScore.coins;
             ui.SetActive(true);
             img.sprite = null;
