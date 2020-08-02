@@ -12,6 +12,7 @@ TagManager:
   - intCC
   - loBar
   - loloBar
+  - Wall
   layers:
   - Default
   - TransparentFX

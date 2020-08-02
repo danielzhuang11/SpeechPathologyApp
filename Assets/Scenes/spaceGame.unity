@@ -1684,7 +1684,7 @@ GameObject:
   - component: {fileID: 824996807}
   m_Layer: 0
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1723,7 +1723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824996806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: -0.97, z: -163.1914}
+  m_LocalPosition: {x: -9.48, y: -0.65, z: -163.1914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2964,7 +2964,7 @@ GameObject:
   - component: {fileID: 1510619597}
   m_Layer: 0
   m_Name: wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3003,7 +3003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510619596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.63, y: -0.97, z: -163.1914}
+  m_LocalPosition: {x: 9.66, y: -0.97, z: -163.1914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4151,12 +4151,12 @@ PrefabInstance:
     - target: {fileID: 309438322527610503, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 309438322527610503, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.76
+      value: -3.39
       objectReference: {fileID: 0}
     - target: {fileID: 309438322527610503, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
@@ -4203,6 +4203,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 309438322527610503, guid: 269f4f9641648994f849cbbbb515fae5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2619936
+      objectReference: {fileID: 0}
+    - target: {fileID: 309438322527610503, guid: 269f4f9641648994f849cbbbb515fae5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3961759
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 309438322527610496, guid: 269f4f9641648994f849cbbbb515fae5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 269f4f9641648994f849cbbbb515fae5, type: 3}
@@ -4221,6 +4231,7 @@ MonoBehaviour:
   rock:
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2294198788834270165, guid: 83bf96a8c9edf764dbdf333ff785a352, type: 3}
+  - {fileID: 2267566467673508916, guid: 24a13ccc9916f764d93381f1ed2fb78f, type: 3}
   spawn:
   - {fileID: 1718464780}
   - {fileID: 1516421418}

@@ -33,6 +33,7 @@ public class GetWords : MonoBehaviour
     public SampleSpeechToText sample;
     public ConfidenceLevel conLvl = ConfidenceLevel.High;
     private int conInt = 2;
+    public static float y;
 #if UNITY_EDITOR || UNITY_STANDALONE
 
     protected PhraseRecognizer recognizer;
@@ -43,7 +44,11 @@ public class GetWords : MonoBehaviour
     public void newWord()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
+        if(audioSource != null)
+            audioSource.Stop();
+
         audioSource = gameObject.AddComponent<AudioSource>();
+
         audioSource.clip = Microphone.Start("", true, 10, 44100);
 #endif
 
@@ -105,8 +110,8 @@ public class GetWords : MonoBehaviour
 #endif
     private void Start()
     {
-
-        thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
+         y = thi.transform.position.y;
+        thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
 
 
         results.text = "Press the New Word Button";
@@ -148,7 +153,7 @@ public class GetWords : MonoBehaviour
             WordBase.termData.groupScore[cGrop] += 1;
             PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
             PlayerPrefs.SetFloat("Score", globalScore.score);
-            thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
+            thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
 
             word = "";
             spaceMove.frozen = false;
