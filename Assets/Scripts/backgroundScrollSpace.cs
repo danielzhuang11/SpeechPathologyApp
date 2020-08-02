@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class backgroundScrollSpace : MonoBehaviour
 {
@@ -14,12 +15,16 @@ public class backgroundScrollSpace : MonoBehaviour
     private float hMove;
     public GameObject gaOv;
     public GameObject flashContain;
+    public Rigidbody2D play;
+    private float oldPos;
+    public Transform pos;
     private void Awake()
     {   
         material = GetComponent<Renderer>().material;
     }
     void Start()
     {
+        oldPos = pos.position.x;
         offset = new Vector2(0, 0);
     }
 
@@ -28,8 +33,9 @@ public class backgroundScrollSpace : MonoBehaviour
     {
         if (!gaOv.activeInHierarchy && flashContain.transform.position.z < -2000)
         {
+            
             hMove = Input.GetAxisRaw("Horizontal");
-            if (!isBlock)
+            if (oldPos != pos.position.x)
             {
                 if (hMove > 0.1f || hMove < -0.1f)
                 {
@@ -42,6 +48,8 @@ public class backgroundScrollSpace : MonoBehaviour
                 offset = new Vector2(xVelocity, 0);
                 material.mainTextureOffset += offset * Time.deltaTime;
             }
+            
         }
+        oldPos = pos.position.x;
     }
 }

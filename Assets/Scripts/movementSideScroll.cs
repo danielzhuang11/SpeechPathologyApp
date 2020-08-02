@@ -27,10 +27,11 @@ public class movementSideScroll : MonoBehaviour
     private float hMove;
     private float vMove;
     private Rigidbody2D rigid;
-    private float jumpCoolDown = 0.1f;
+    private float jumpCoolDown = .1f;
     private float timeTill = 0f;
     public TextMeshProUGUI results;
     public static bool movin;
+    public Rigidbody2D pla;
     void Start()
     {
         globalScore.coins = 0;
@@ -41,12 +42,15 @@ public class movementSideScroll : MonoBehaviour
     void Update()
     {
         timeTill += Time.deltaTime;
-
+        
     }
     void FixedUpdate()
     {
+        
         if ( ui.transform.position.z < -2000)
         {
+            pla.constraints = RigidbodyConstraints2D.None;
+            pla.constraints = RigidbodyConstraints2D.FreezeRotation;
             movin = true;
             hMove = Input.GetAxisRaw("Horizontal");
             vMove = Input.GetAxisRaw("Vertical");
@@ -67,6 +71,7 @@ public class movementSideScroll : MonoBehaviour
                 coinTxt.text = "Coin: " + globalScore.coins;
                 horizontalMove = moveSpeed;
                 anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            
                 GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
                 transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
             }
@@ -74,6 +79,7 @@ public class movementSideScroll : MonoBehaviour
             {
                 coinTxt.text = "Coin: " + globalScore.coins;
                 horizontalMove = -moveSpeed;
+                
                 GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
                 transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
                 anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -85,7 +91,7 @@ public class movementSideScroll : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
                 anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
             }
-            if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && isGrounded == true && timeTill > jumpCoolDown)
+            if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && (isGrounded == true && timeTill > jumpCoolDown))
             {
                 timeTill = 0;
                 Jump();
@@ -94,6 +100,7 @@ public class movementSideScroll : MonoBehaviour
         else
         {
             movin = false;
+            pla.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
     }
