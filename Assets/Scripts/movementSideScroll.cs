@@ -10,7 +10,9 @@ public class movementSideScroll : MonoBehaviour
     public float moveSpeed = 20f;
     public FixedJoystick joystick;
     float horizontalMove = 0f;
-    public bool isGrounded = true;
+    public bool isGrounded = false;
+    public bool isGrounded1 = false;
+    public bool isGrounded2 = false;
     public float jumpForce = 5f;
     public float healthMax = 5f;
     public Transform player;
@@ -42,6 +44,15 @@ public class movementSideScroll : MonoBehaviour
     void Update()
     {
         timeTill += Time.deltaTime;
+        if(isGrounded1 && isGrounded2)
+        {
+            if(timeTill>jumpCoolDown)
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
         
     }
     void FixedUpdate()
@@ -91,10 +102,21 @@ public class movementSideScroll : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
                 anim.SetFloat("Speed", Mathf.Abs(horizontalMove));
             }
-            if ((joystick.Vertical >= 0.7f || vMove >= 0.1f) && (isGrounded == true && timeTill > jumpCoolDown))
+            if (timeTill > jumpCoolDown && (joystick.Vertical >= 0.7f || vMove >= 0.1f))
             {
-                timeTill = 0;
-                Jump();
+                if (isGrounded)
+                {
+                    if (timeTill > jumpCoolDown)
+                    {
+                        Debug.Log("Youre doijng it wrong");
+                        Debug.Log(isGrounded);
+                        isGrounded = false;
+
+                        timeTill = 0;
+                        Jump();
+                    }
+                }
+                
             }
         }
         else
@@ -106,7 +128,8 @@ public class movementSideScroll : MonoBehaviour
     }
     void Jump()
     {
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x,jumpForce);
+        //gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

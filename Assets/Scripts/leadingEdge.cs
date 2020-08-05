@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class grounded : MonoBehaviour
+public class leadingEdge : MonoBehaviour
 {
-    // Start is called before the first frame update
     GameObject Player;
     void Start()
     {
@@ -14,13 +13,13 @@ public class grounded : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Ground"||collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "Enemy")
         {
-            Player.GetComponent<movementSideScroll>().isGrounded2 = true;
+            Player.GetComponent<movementSideScroll>().isGrounded1 = true;
         }
     }
     /*private void OnCollisionStay2D(Collision2D collision)
@@ -32,9 +31,9 @@ public class grounded : MonoBehaviour
     }*/
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Ground"||collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "Enemy")
         {
-            Player.GetComponent<movementSideScroll>().isGrounded2 = false;
+            Player.GetComponent<movementSideScroll>().isGrounded1 = false;
         }
     }
 }
