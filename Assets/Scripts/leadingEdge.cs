@@ -17,9 +17,13 @@ public class leadingEdge : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Ground" || collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Ground")
         {
             Player.GetComponent<movementSideScroll>().isGrounded1 = true;
+        }
+        if (collision.collider.tag == "Enemy")
+        {
+            Player.GetComponent<movementSideScroll>().isGrounded2 = true;
         }
     }
     /*private void OnCollisionStay2D(Collision2D collision)
@@ -31,9 +35,10 @@ public class leadingEdge : MonoBehaviour
     }*/
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Ground" || collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Ground")
         {
             Player.GetComponent<movementSideScroll>().isGrounded1 = false;
         }
+        
     }
 }

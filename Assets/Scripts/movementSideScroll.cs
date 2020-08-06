@@ -44,7 +44,7 @@ public class movementSideScroll : MonoBehaviour
     void Update()
     {
         timeTill += Time.deltaTime;
-        if(isGrounded1 && isGrounded2)
+        if((isGrounded1 && isGrounded2))
         {
             if(timeTill>jumpCoolDown)
             isGrounded = true;
@@ -62,6 +62,7 @@ public class movementSideScroll : MonoBehaviour
         {
             pla.constraints = RigidbodyConstraints2D.None;
             pla.constraints = RigidbodyConstraints2D.FreezeRotation;
+            pla.gravityScale = 2;
             movin = true;
             hMove = Input.GetAxisRaw("Horizontal");
             vMove = Input.GetAxisRaw("Vertical");
@@ -111,6 +112,8 @@ public class movementSideScroll : MonoBehaviour
                         Debug.Log("Youre doijng it wrong");
                         Debug.Log(isGrounded);
                         isGrounded = false;
+                        isGrounded2 = false;
+                        isGrounded1 = false;
 
                         timeTill = 0;
                         Jump();
@@ -122,7 +125,10 @@ public class movementSideScroll : MonoBehaviour
         else
         {
             movin = false;
-            pla.constraints = RigidbodyConstraints2D.FreezeAll;
+            pla.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            pla.velocity = new Vector2(0,0);
+            pla.gravityScale = 0;
+            //pla.gravityScale = 0;
         }
 
     }

@@ -733,7 +733,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9, y: 2.3}
+  m_Size: {x: 8.8, y: 2.3}
   m_EdgeRadius: 0
 --- !u!212 &118871664
 SpriteRenderer:
@@ -1465,7 +1465,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.28, y: -0.235}
+  m_Offset: {x: 0.01, y: -0.235}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1476,7 +1476,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.005}
+  m_Size: {x: 1.17, y: 0.005}
   m_EdgeRadius: 0
 --- !u!1 &579829280
 GameObject:
@@ -2330,7 +2330,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2000560125326566687}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1415433551}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3882a15d74684848a6663f05ae4ae93, type: 3}
@@ -2490,6 +2490,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400855708}
   m_CullTransparentMesh: 0
+--- !u!1 &1415433551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2000560126631983628, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2000560125326566687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1415433556
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415433551}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 06f7112d07b70494b80d197cf675db33, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05, y: -1.05}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.9, y: 3}
+    newSize: {x: 1.9, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 0.8}
+  m_EdgeRadius: 0
+--- !u!70 &1415433557
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415433551}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 06f7112d07b70494b80d197cf675db33, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05, y: 0.35}
+  m_Size: {x: 1.2, y: 1.93}
+  m_Direction: 0
 --- !u!4 &1448288023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2000560126631983624, guid: 7a717a032d3f20c47893eaf4fe018bd6,
@@ -3475,12 +3523,12 @@ PrefabInstance:
     - target: {fileID: 4250923654436308027, guid: d064601176b5b2e4785d15e666b2d623,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.81
+      value: 21.09
       objectReference: {fileID: 0}
     - target: {fileID: 4250923654436308027, guid: d064601176b5b2e4785d15e666b2d623,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4250923654436308027, guid: d064601176b5b2e4785d15e666b2d623,
         type: 3}
@@ -4295,18 +4343,23 @@ PrefabInstance:
     - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.8
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.375
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 2000560126123654105, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 06f7112d07b70494b80d197cf675db33, type: 2}
+    - target: {fileID: 2000560126123654107, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2000560126631983623, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: joystick
@@ -4425,7 +4478,27 @@ PrefabInstance:
     - target: {fileID: 2000560126631983626, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
       propertyPath: m_Size.y
-      value: 2.95
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126631983626, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126631983626, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126631983626, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000560126631983626, guid: 7a717a032d3f20c47893eaf4fe018bd6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000560126631983627, guid: 7a717a032d3f20c47893eaf4fe018bd6,
         type: 3}
