@@ -33,8 +33,10 @@ public class backgroundScrollSpace : MonoBehaviour
     {
         if (!gaOv.activeInHierarchy && flashContain.transform.position.z < -2000)
         {
-            
-            hMove = Input.GetAxisRaw("Horizontal");
+
+            //hMove = Input.GetAxisRaw("Horizontal");
+            hMove = (pos.position.x - oldPos) * 10;
+            //Debug.Log("hMove: " + hMove + " input: " + Input.GetAxisRaw("Horizontal"));
             if (oldPos != pos.position.x)
             {
                 if (hMove > 0.1f || hMove < -0.1f)
