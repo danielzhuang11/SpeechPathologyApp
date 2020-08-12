@@ -309,6 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thi: {fileID: 1567844657}
+  txt: {fileID: 941558656}
+  gameController: {fileID: 0}
 --- !u!222 &112754630
 CanvasRenderer:
   m_ObjectHideFlags: 0

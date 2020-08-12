@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 //Use the PointerDown and PointerUP interfaces to detect a mouse down and up on a ui element
 public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -11,7 +12,9 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     static string cGrop;
 
     public GameObject thi;
+    public TextMeshProUGUI txt;
 
+    public GameObject gameController;
 
     AudioClip recording;
     //Keep this one as a global variable (outside the functions) too and use GetComponent during start to save resources
@@ -22,9 +25,6 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-
-
-
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -41,19 +41,29 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         this.recording = recordingNew;
 
         //Play recording
-        audioSource.clip = recording;
-        audioSource.Play();
+        if (recording.length > 1.5)
+        {
+            audioSource.clip = recording;
+            audioSource.Play();
 
+            txt.text = "You did it!";
+            //gameController.GetComponent<GetWords>().newWord();
+            globalScore.coins += 1;
+            globalScore.score += 1;
+            WordBase.termData.groupScore[cGrop] += 1;
+            PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
+            PlayerPrefs.SetFloat("Score", globalScore.score);
+            spaceMove.frozen = false;
+            //thi.SetActive(false);
 
-        globalScore.coins += 1;
-        globalScore.score += 1;
-        WordBase.termData.groupScore[cGrop] += 1;
-        PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
-        PlayerPrefs.SetFloat("Score", globalScore.score);
-        spaceMove.frozen = false;
-        //thi.SetActive(false);
+            thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
 
-        thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
+        }
+        else
+        {
+            txt.text = "Say a longer sentence";
+
+        }
 
 
     }

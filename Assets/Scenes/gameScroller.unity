@@ -2947,6 +2947,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thi: {fileID: 380031219}
+  txt: {fileID: 9085434649263178800}
+  gameController: {fileID: 0}
 --- !u!114 &1613366951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2992,7 +2994,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1191330651}
         m_TargetAssemblyTypeName: 
-        m_MethodName: newWord
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

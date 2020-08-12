@@ -59,8 +59,6 @@ public class spaceMove : MonoBehaviour
                 horizontalMove = -moveSpeed;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMove, GetComponent<Rigidbody2D>().velocity.y);
 
-
-
             }
             else
             {
