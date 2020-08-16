@@ -6,11 +6,6 @@ public class enemyMove : MonoBehaviour
 {
     private float move = 200f;
     public float speed = 3f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void FixedUpdate()
