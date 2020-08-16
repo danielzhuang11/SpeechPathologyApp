@@ -19,7 +19,7 @@ public class SpaceEnemyMove : MonoBehaviour
     private void FixedUpdate()
     {
         count += Time.deltaTime;
-        if (count > (3))
+        if (count > (2.5f))
         {
             Instantiate(shot, transform.position, Quaternion.identity);
             count = 0;

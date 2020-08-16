@@ -4146,6 +4146,11 @@ PrefabInstance:
       propertyPath: plaaa
       value: 
       objectReference: {fileID: 1017399659}
+    - target: {fileID: 222928645239896407, guid: 269f4f9641648994f849cbbbb515fae5,
+        type: 3}
+      propertyPath: plaa
+      value: 
+      objectReference: {fileID: 1017399659}
     - target: {fileID: 309438322527610497, guid: 269f4f9641648994f849cbbbb515fae5,
         type: 3}
       propertyPath: m_UsedByComposite
@@ -4249,6 +4254,8 @@ MonoBehaviour:
   - {fileID: 2294198788834270165, guid: 83bf96a8c9edf764dbdf333ff785a352, type: 3}
   - {fileID: 2267566467673508916, guid: 24a13ccc9916f764d93381f1ed2fb78f, type: 3}
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
+  - {fileID: 2267566467673508916, guid: 24a13ccc9916f764d93381f1ed2fb78f, type: 3}
+  - {fileID: 2294198788834270165, guid: 83bf96a8c9edf764dbdf333ff785a352, type: 3}
   spawn:
   - {fileID: 1718464780}
   - {fileID: 1516421418}
