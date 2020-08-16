@@ -33,7 +33,7 @@ public class backgroundScrollSpace : MonoBehaviour
     {
         if (!gaOv.activeInHierarchy && flashContain.transform.position.z < -2000)
         {
-
+            
             //hMove = Input.GetAxisRaw("Horizontal");
             hMove = (pos.position.x - oldPos) * 10;
             //Debug.Log("hMove: " + hMove + " input: " + Input.GetAxisRaw("Horizontal"));
@@ -50,8 +50,9 @@ public class backgroundScrollSpace : MonoBehaviour
                 offset = new Vector2(xVelocity, 0);
                 material.mainTextureOffset += offset * Time.deltaTime;
             }
-            
+
         }
+        
         oldPos = pos.position.x;
     }
 }

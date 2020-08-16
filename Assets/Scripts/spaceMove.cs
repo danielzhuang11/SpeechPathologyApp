@@ -20,6 +20,7 @@ public class spaceMove : MonoBehaviour
     public GameObject ui;
     private float hMove;
     public TextMeshProUGUI results;
+    public Rigidbody2D plaaa;
 
 
     public static bool frozen = false;
@@ -45,6 +46,8 @@ public class spaceMove : MonoBehaviour
         }
         if (ui.transform.position.z<-2000)
         {
+            plaaa.constraints = RigidbodyConstraints2D.None;
+            plaaa.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             if (joystick.Horizontal >= 0.2f || hMove >= 0.1f)
             {
                 score.text = "Score: " + globalScore.coins;
@@ -70,7 +73,11 @@ public class spaceMove : MonoBehaviour
 
             }
         }
-        
+        else
+        {
+            plaaa.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+
 
     }
 
