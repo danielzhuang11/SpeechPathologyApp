@@ -18,7 +18,7 @@ public class DropdownFill : MonoBehaviour
     {
         PopulateListG();
       //  PopulateListD();
-        group = "Level 1 /r/ initial";
+        group = groups[0];
 
     }
     public void groupindexChanged(int index)
