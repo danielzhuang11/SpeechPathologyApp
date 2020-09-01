@@ -7,6 +7,20 @@ public class diffControl : MonoBehaviour
     public GameObject Easy;
     public GameObject Med;
     public GameObject Hard;
+    public void Update()
+    {
+        if (PlayerPrefs.GetInt("diff") == 0)
+        {
+            easy();
+        }else if(PlayerPrefs.GetInt("diff") == 1)
+        {
+            medium();
+        }
+        else
+        {
+            hard();
+        }
+    }
     public void easy()
     {
         PlayerPrefs.SetInt("diff", 0);
