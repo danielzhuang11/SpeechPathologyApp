@@ -13,9 +13,6 @@ using UnityEngine.Audio;
 #endif
 public class GetWords : MonoBehaviour
 {
-
-
-
     public Image image;
     public string cGrop;
     public string correct;
@@ -36,13 +33,51 @@ public class GetWords : MonoBehaviour
     public static float y;
 #if UNITY_EDITOR || UNITY_STANDALONE
 
+    private String spokenText = "";
     protected PhraseRecognizer recognizer;
+    protected DictationRecognizer recognizer2;
+
 #endif
 
+    [SerializeField] private TextMeshProUGUI uiText;
+    [SerializeField] private float mainTimer;
 
-    private static System.Timers.Timer aTimer;
+    [SerializeField] private GameObject newWordBtn;
+
+    private float timer;
+    private bool canCount = true;
+    private bool doOnce = false;
+
+    public void GotoGameSelectorScene()
+    {
+        Time.timeScale = 1;
+        spaceMove.frozen = false;
+        pause.isPaused = false;
+        if (recognizer != null)
+        {
+            PhraseRecognitionSystem.Shutdown();
+        }
+        if (recognizer2 != null)
+        {
+            recognizer2.Dispose();
+        }
+        SceneManager.LoadScene("SelectGame");
+    }
+    public void Resetbtn()
+    {
+        timer = mainTimer;
+        canCount = true;
+        doOnce = false;
+    }
+    public void stop()
+    {
+        canCount = false;
+    }
+
     public void newWord()
     {
+        
+        newWordBtn.SetActive(false);
 #if UNITY_EDITOR || UNITY_STANDALONE
         if(audioSource != null)
             audioSource.Stop();
@@ -52,8 +87,6 @@ public class GetWords : MonoBehaviour
         audioSource.clip = Microphone.Start("", true, 10, 44100);
 #endif
 
-
-        updateOn = true;
         string chosen = WordBase.getRandFromCSV(group);
 
         if (WordBase.termData.terms[chosen][1] != null)
@@ -65,7 +98,7 @@ public class GetWords : MonoBehaviour
         cGrop = WordBase.termData.terms[chosen][0];
         correct = chosen;
         string[] t = new[] { correct };
-        if (group.Contains("Level 3"))
+        if (group.Contains("Sentences"))
         {
             sentence = true;
             record.gameObject.SetActive(true);
@@ -94,12 +127,40 @@ public class GetWords : MonoBehaviour
             {
                 conLvl = ConfidenceLevel.Low;
             }
-            recognizer = new KeywordRecognizer(t, conLvl);
-            Debug.Log(conLvl);
-            recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
-            recognizer.Start();
+            if(conLvl == ConfidenceLevel.Low)
+            {
+                recognizer2 = new DictationRecognizer();
+
+                recognizer2.DictationResult += (text, confidence) =>
+                {
+                    Debug.LogFormat("Dictation result: {0}", text);
+                    spokenText = text;
+                    //m_Recognitions.text += text + "\n";
+                };
+               
+
+                recognizer2.Start();
+
+            }
+            else
+            {
+                recognizer = new KeywordRecognizer(t, conLvl);
+                Debug.Log(conLvl);
+                recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
+                recognizer.Start();
+            }
+           
         }
+        updateOn = true;
+
+        Resetbtn();
 #endif
+
+        if (sentence == true)
+        {
+            record.gameObject.SetActive(true);
+
+        }
     }
 #if UNITY_EDITOR || UNITY_STANDALONE
         private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
@@ -110,7 +171,14 @@ public class GetWords : MonoBehaviour
 #endif
     private void Start()
     {
-         y = thi.transform.position.y;
+        /*//if(recognizer != null)
+        { recognizer.Stop();
+            recognizer.Dispose();
+        }*/
+        timer = mainTimer;
+
+        updateOn = false;
+        y = thi.transform.position.y;
         thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
 
 
@@ -133,17 +201,60 @@ public class GetWords : MonoBehaviour
     }
     private void Update()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
 
+        if(timer >= 0.0f && canCount && conLvl != ConfidenceLevel.Low && updateOn)
+        {
+            timer -= Time.deltaTime;
+            uiText.text = timer.ToString("F");
+        }
+        else if(timer <= 0.0f && !doOnce && updateOn == true)
+        {
+            canCount = false;
+            doOnce= true;
+            uiText.text = "0.00";
+            timer = 0.0f;
+            results.text = "You did not answer in time";
+            newWordBtn.SetActive(true);
+
+            if(sentence == true)
+            {
+                record.gameObject.SetActive(false);
+
+            }
+            updateOn = false;
+
+        }
+        if (spokenText.Length > 0 && updateOn == true)
+        {
+            newWordBtn.SetActive(true);
+
+            audioSource.Play();
+            Microphone.End(null);
+            recognizer2.Stop();
+            results.text = "Nice Job! Your audio is being played back";
+            globalScore.score += 1;
+            globalScore.coins += 1;
+            WordBase.termData.groupScore[cGrop] += 1;
+            PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
+            PlayerPrefs.SetFloat("Score", globalScore.score);
+            thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
+            word = "";
+            spaceMove.frozen = false;
+            spokenText = "";
+            updateOn = false;
+
+        }
         if (word.ToLower().Equals(correct.ToLower()) && updateOn == true)
         {
-#if UNITY_EDITOR || UNITY_STANDALONE
+            stop();
+            newWordBtn.SetActive(true);
+
             audioSource.Play();
             Microphone.End(null);
             recognizer.Stop();
 
 #endif
-
-
             results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly! " + "\n" + "Your audio is being played back";
             globalScore.score += 1;
             globalScore.coins += 1;

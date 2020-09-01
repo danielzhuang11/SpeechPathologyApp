@@ -15,6 +15,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public TextMeshProUGUI txt;
 
     public GameObject gameController;
+    public GameObject newWordBtn;
 
     AudioClip recording;
     //Keep this one as a global variable (outside the functions) too and use GetComponent during start to save resources
@@ -47,7 +48,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             audioSource.Play();
 
             txt.text = "You did it!";
-            //gameController.GetComponent<GetWords>().newWord();
+            gameController.GetComponent<GetWords>().stop();
             globalScore.coins += 1;
             globalScore.score += 1;
             WordBase.termData.groupScore[cGrop] += 1;
@@ -57,7 +58,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             //thi.SetActive(false);
 
             thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
-
+            newWordBtn.SetActive(true);
         }
         else
         {
