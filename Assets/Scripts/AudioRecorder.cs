@@ -57,7 +57,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             spaceMove.frozen = false;
             //thi.SetActive(false);
 
-            thi.transform.position = new Vector3(thi.transform.position.x, thi.transform.position.y, -50000);
+            thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
             newWordBtn.SetActive(true);
         }
         else

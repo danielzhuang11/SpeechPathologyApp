@@ -1474,8 +1474,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 686589317}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 232140701}
+        m_TargetAssemblyTypeName: GetWords, Assembly-CSharp
         m_MethodName: GotoGameSelectorScene
         m_Mode: 1
         m_Arguments:
