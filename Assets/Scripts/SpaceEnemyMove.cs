@@ -13,6 +13,7 @@ public class SpaceEnemyMove : MonoBehaviour
     {
         count = 0;
         GetComponent<Rigidbody2D>().gravityScale = 0.1f;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     // Update is called once per frame

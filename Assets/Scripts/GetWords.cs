@@ -28,10 +28,10 @@ public class GetWords : MonoBehaviour
     public Button record;
     public Button speech;
     public SampleSpeechToText sample;
-    public ConfidenceLevel conLvl = ConfidenceLevel.High;
     private int conInt = 2;
     public static float y;
 #if UNITY_EDITOR || UNITY_STANDALONE
+    public ConfidenceLevel conLvl = ConfidenceLevel.High;
 
     private String spokenText = "";
     protected PhraseRecognizer recognizer;
@@ -53,6 +53,8 @@ public class GetWords : MonoBehaviour
         Time.timeScale = 1;
         spaceMove.frozen = false;
         pause.isPaused = false;
+#if UNITY_EDITOR || UNITY_STANDALONE
+
         if (recognizer != null)
         {
             PhraseRecognitionSystem.Shutdown();
@@ -61,6 +63,7 @@ public class GetWords : MonoBehaviour
         {
             recognizer2.Dispose();
         }
+#endif
         SceneManager.LoadScene("SelectGame");
     }
     public void Resetbtn()
@@ -151,11 +154,11 @@ public class GetWords : MonoBehaviour
             }
            
         }
+
+#endif
         updateOn = true;
 
         Resetbtn();
-#endif
-
         if (sentence == true)
         {
             record.gameObject.SetActive(true);
@@ -201,23 +204,26 @@ public class GetWords : MonoBehaviour
     }
     private void Update()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
-
-        if(timer >= 0.0f && canCount && conLvl != ConfidenceLevel.Low && updateOn)
+        if (timer >= 0.0f && canCount  && updateOn)
         {
-            timer -= Time.deltaTime;
-            uiText.text = timer.ToString("F");
+#if UNITY_EDITOR || UNITY_STANDALONE
+            if (conLvl != ConfidenceLevel.Low)
+#endif
+            {
+                timer -= Time.deltaTime;
+                uiText.text = timer.ToString("F");
+            }
         }
-        else if(timer <= 0.0f && !doOnce && updateOn == true)
+        else if (timer <= 0.0f && !doOnce && updateOn == true)
         {
             canCount = false;
-            doOnce= true;
+            doOnce = true;
             uiText.text = "0.00";
             timer = 0.0f;
             results.text = "You did not answer in time";
             newWordBtn.SetActive(true);
 
-            if(sentence == true)
+            if (sentence == true)
             {
                 record.gameObject.SetActive(false);
 
@@ -225,6 +231,8 @@ public class GetWords : MonoBehaviour
             updateOn = false;
 
         }
+#if UNITY_EDITOR || UNITY_STANDALONE
+
         if (spokenText.Length > 0 && updateOn == true)
         {
             newWordBtn.SetActive(true);
@@ -245,10 +253,11 @@ public class GetWords : MonoBehaviour
             updateOn = false;
 
         }
+#endif
+
         if (word.ToLower().Equals(correct.ToLower()) && updateOn == true)
         {
-            stop();
-            newWordBtn.SetActive(true);
+#if UNITY_EDITOR || UNITY_STANDALONE
 
             audioSource.Play();
             Microphone.End(null);
@@ -261,6 +270,9 @@ public class GetWords : MonoBehaviour
 #if !(UNITY_EDITOR || UNITY_STANDALONE)
             sample.OnClickSpeaks(word);
 #endif
+            newWordBtn.SetActive(true);
+            stop();
+
             WordBase.termData.groupScore[cGrop] += 1;
             PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
             PlayerPrefs.SetFloat("Score", globalScore.score);
