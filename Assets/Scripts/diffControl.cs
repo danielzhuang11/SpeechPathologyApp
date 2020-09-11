@@ -2,8 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class diffControl : MonoBehaviour
 {
+    
+
+   
+   
+    
+    public void Start()
+    {
+
+
+#if !(UNITY_EDITOR || UNITY_STANDALONE)
+         GameObject.Find("diff").SetActive(false);
+#else
+        GameObject.Find("Toggle").SetActive(false);
+#endif
+
+    }
     public GameObject Easy;
     public GameObject Med;
     public GameObject Hard;
@@ -42,4 +59,6 @@ public class diffControl : MonoBehaviour
         Med.SetActive(true);
         Hard.SetActive(false);
     }
+
+  
 }

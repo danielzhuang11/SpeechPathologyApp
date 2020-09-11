@@ -43,6 +43,7 @@ public class GetWords : MonoBehaviour
     [SerializeField] private float mainTimer;
 
     [SerializeField] private GameObject newWordBtn;
+    [SerializeField] private GameObject diff;
 
     private float timer;
     private bool canCount = true;
@@ -81,6 +82,7 @@ public class GetWords : MonoBehaviour
     {
         
         newWordBtn.SetActive(false);
+        //start recording for pc
 #if UNITY_EDITOR || UNITY_STANDALONE
         if(audioSource != null)
             audioSource.Stop();
@@ -113,6 +115,7 @@ public class GetWords : MonoBehaviour
         else
         {
             sentence = false; record.gameObject.SetActive(false);
+            //activate mobile record button
 #if !(UNITY_EDITOR || UNITY_STANDALONE)
             speech.gameObject.SetActive(true);
 #endif
@@ -174,10 +177,6 @@ public class GetWords : MonoBehaviour
 #endif
     private void Start()
     {
-        /*//if(recognizer != null)
-        { recognizer.Stop();
-            recognizer.Dispose();
-        }*/
         timer = mainTimer;
 
         updateOn = false;
@@ -201,9 +200,30 @@ public class GetWords : MonoBehaviour
         speech.gameObject.SetActive(false);
 #endif
 
+
     }
     private void Update()
     {
+
+#if !(UNITY_EDITOR || UNITY_STANDALONE)
+        //nocheck mobile
+        if(!ToggleSwitch._isOn && updateOn && word.Length>0)
+        {
+            newWordBtn.SetActive(true);
+
+            results.text = "Nice Job! Your audio is being played back";
+            globalScore.score += 1;
+            globalScore.coins += 1;
+            WordBase.termData.groupScore[cGrop] += 1;
+            PlayerPrefs.SetInt(cGrop, WordBase.termData.groupScore[cGrop]);
+            PlayerPrefs.SetFloat("Score", globalScore.score);
+            thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
+            word = "";
+            spaceMove.frozen = false;
+            updateOn = false;
+        }
+
+#endif
         if (timer >= 0.0f && canCount  && updateOn)
         {
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -232,7 +252,7 @@ public class GetWords : MonoBehaviour
 
         }
 #if UNITY_EDITOR || UNITY_STANDALONE
-
+        //no check - pc
         if (spokenText.Length > 0 && updateOn == true)
         {
             newWordBtn.SetActive(true);
@@ -254,9 +274,11 @@ public class GetWords : MonoBehaviour
 
         }
 #endif
-
-        if (word.ToLower().Equals(correct.ToLower()) && updateOn == true)
+        //checking for both mobile and pc
+        if (word.ToLower().Equals(correct.ToLower()) && updateOn == true && ToggleSwitch._isOn)
         {
+
+
 #if UNITY_EDITOR || UNITY_STANDALONE
 
             audioSource.Play();
