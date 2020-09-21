@@ -223,7 +223,7 @@ public class GetWords : MonoBehaviour
         if (timer >= 0.0f && canCount  && updateOn)
         {
 #if UNITY_EDITOR || UNITY_STANDALONE
-            if (conLvl != ConfidenceLevel.Low)
+            if (conInt != 0)
 #endif
             {
                 timer -= Time.deltaTime;
