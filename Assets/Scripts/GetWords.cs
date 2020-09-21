@@ -126,14 +126,10 @@ public class GetWords : MonoBehaviour
             if(PlayerPrefs.HasKey("diff"))
                 conInt = PlayerPrefs.GetInt("diff");
             if (conInt == 2)
-                conLvl = ConfidenceLevel.High;
-            else if(conInt == 1)
                 conLvl = ConfidenceLevel.Medium;
-            else if(conInt == 0)
-            {
+            else if(conInt == 1)
                 conLvl = ConfidenceLevel.Low;
-            }
-            if(conLvl == ConfidenceLevel.Low)
+            if(conInt == 0)
             {
                 recognizer2 = new DictationRecognizer();
 
