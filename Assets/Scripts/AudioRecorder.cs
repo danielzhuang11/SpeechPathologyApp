@@ -42,7 +42,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         this.recording = recordingNew;
 
         //Play recording
-        if (recording.length > 1.5)
+        if (recording.length > 1.5 || (gameController.GetComponent<GetWords>().conInt == 0 && !DropdownFill.group.Contains("Sentences")))
         {
             audioSource.clip = recording;
             audioSource.Play();

@@ -296,11 +296,11 @@ MonoBehaviour:
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
-    m_RichText: 0
+    m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Accuracy Mode Noisy Room
+  m_Text: No Headset (Easier)
 --- !u!222 &111262685
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Accuracy Mode Quiet Room
+  m_Text: HEadset Mode (Harder)
 --- !u!222 &704727197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3808,7 +3808,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Accuracy Mode Quiet Room
+  m_Text: HEadset Mode (Harder)
 --- !u!222 &2024988418
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3983,7 +3983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5.4}
+  m_AnchoredPosition: {x: 0, y: 0.0000014305}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120702218
@@ -4019,9 +4019,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Accuracy Mode Noisy Room
-
-'
+  m_Text: No Headset (Easier)
 --- !u!222 &2120702219
 CanvasRenderer:
   m_ObjectHideFlags: 0

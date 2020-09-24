@@ -28,7 +28,7 @@ public class GetWords : MonoBehaviour
     public Button record;
     public Button speech;
     public SampleSpeechToText sample;
-    private int conInt = 2;
+    public int conInt = 2;
     public static float y;
 #if UNITY_EDITOR || UNITY_STANDALONE
     public ConfidenceLevel conLvl = ConfidenceLevel.High;
@@ -103,7 +103,43 @@ public class GetWords : MonoBehaviour
         cGrop = WordBase.termData.terms[chosen][0];
         correct = chosen;
         string[] t = new[] { correct };
-        if (group.Contains("Sentences"))
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (word != null && !sentence)
+        {
+            if (PlayerPrefs.HasKey("diff"))
+                conInt = PlayerPrefs.GetInt("diff");
+            if (conInt == 2)
+                conLvl = ConfidenceLevel.Medium;
+            else if (conInt == 1)
+                conLvl = ConfidenceLevel.Low;
+            if (conInt == 0)
+            {
+               
+
+                /* recognizer2 = new DictationRecognizer();
+
+                 recognizer2.DictationResult += (text, confidence) =>
+                 {
+                     Debug.LogFormat("Dictation result: {0}", text);
+                     spokenText = text;
+                     //m_Recognitions.text += text + "\n";
+                 };
+
+
+                 recognizer2.Start();*/
+
+            }
+            else
+            {
+                recognizer = new KeywordRecognizer(t, conLvl);
+                Debug.Log(conLvl);
+                recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
+                recognizer.Start();
+            }
+
+        }
+        if (group.Contains("Sentences") || conInt==0)
         {
             sentence = true;
             record.gameObject.SetActive(true);
@@ -114,45 +150,14 @@ public class GetWords : MonoBehaviour
         }
         else
         {
-            sentence = false; record.gameObject.SetActive(false);
+            sentence = false; 
+            record.gameObject.SetActive(false);
             //activate mobile record button
 #if !(UNITY_EDITOR || UNITY_STANDALONE)
             speech.gameObject.SetActive(true);
 #endif
         }
-#if UNITY_EDITOR || UNITY_STANDALONE
-        if (word != null && !sentence)
-          {
-            if(PlayerPrefs.HasKey("diff"))
-                conInt = PlayerPrefs.GetInt("diff");
-            if (conInt == 2)
-                conLvl = ConfidenceLevel.Medium;
-            else if(conInt == 1)
-                conLvl = ConfidenceLevel.Low;
-            if(conInt == 0)
-            {
-                recognizer2 = new DictationRecognizer();
 
-                recognizer2.DictationResult += (text, confidence) =>
-                {
-                    Debug.LogFormat("Dictation result: {0}", text);
-                    spokenText = text;
-                    //m_Recognitions.text += text + "\n";
-                };
-               
-
-                recognizer2.Start();
-
-            }
-            else
-            {
-                recognizer = new KeywordRecognizer(t, conLvl);
-                Debug.Log(conLvl);
-                recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
-                recognizer.Start();
-            }
-           
-        }
 
 #endif
         updateOn = true;
@@ -239,7 +244,7 @@ public class GetWords : MonoBehaviour
             results.text = "You did not answer in time";
             newWordBtn.SetActive(true);
 
-            if (sentence == true)
+            if (sentence == true || conInt ==0)
             {
                 record.gameObject.SetActive(false);
 
@@ -251,7 +256,7 @@ public class GetWords : MonoBehaviour
         //no check - pc
         if (spokenText.Length > 0 && updateOn == true)
         {
-            newWordBtn.SetActive(true);
+           /* newWordBtn.SetActive(true);
 
             audioSource.Play();
             Microphone.End(null);
@@ -266,7 +271,7 @@ public class GetWords : MonoBehaviour
             word = "";
             spaceMove.frozen = false;
             spokenText = "";
-            updateOn = false;
+            updateOn = false;*/
 
         }
 #endif
