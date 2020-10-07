@@ -48,7 +48,6 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             audioSource.Play();
 
             txt.text = "You did it!";
-            gameController.GetComponent<GetWords>().stop();
             globalScore.coins += 1;
             globalScore.score += 1;
             WordBase.termData.groupScore[cGrop] += 1;
