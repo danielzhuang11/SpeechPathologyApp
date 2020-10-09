@@ -381,9 +381,9 @@ MonoBehaviour:
   record: {fileID: 112754627}
   speech: {fileID: 1198891518}
   sample: {fileID: 2126588248}
+  conInt: 2
   conLvl: 0
   uiText: {fileID: 1053440440}
-  mainTimer: 10
   newWordBtn: {fileID: 1325135293}
   diff: {fileID: 0}
 --- !u!114 &232140702
@@ -4340,6 +4340,9 @@ MonoBehaviour:
   - {fileID: 2267566467673508916, guid: c66978653094a47418a5410dd31b610a, type: 3}
   - {fileID: 2267566467673508916, guid: 24a13ccc9916f764d93381f1ed2fb78f, type: 3}
   - {fileID: 2294198788834270165, guid: 83bf96a8c9edf764dbdf333ff785a352, type: 3}
+  - {fileID: 2294198788834270165, guid: 83bf96a8c9edf764dbdf333ff785a352, type: 3}
+  - {fileID: 6015635262243432661, guid: 81661a1fc1f06ca4c8ce9eb49546acc9, type: 3}
+  - {fileID: 6015635262243432661, guid: 81661a1fc1f06ca4c8ce9eb49546acc9, type: 3}
   spawn:
   - {fileID: 1718464780}
   - {fileID: 1516421418}

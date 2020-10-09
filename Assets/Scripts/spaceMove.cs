@@ -95,9 +95,11 @@ public class spaceMove : MonoBehaviour
 
             results.text = "Press the New Word Button";
             frozen = true;
-
-
-
+        }
+        if (collision.collider.tag == "Health" && health < healthMax)
+        {
+            health += 1;
+            healthBar.fillAmount = health / healthMax;
         }
     }
     
