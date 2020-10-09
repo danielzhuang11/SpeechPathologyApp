@@ -15,7 +15,7 @@ public class GetWords : MonoBehaviour
 {
     public Image image;
     public string cGrop;
-    public string correct;
+    public static string correct;
     private string group;
     public float speed = 1;
     public TextMeshProUGUI results;
@@ -35,7 +35,6 @@ public class GetWords : MonoBehaviour
 
     private String spokenText = "";
     protected PhraseRecognizer recognizer;
-    protected DictationRecognizer recognizer2;
 
 #endif
 
@@ -55,10 +54,7 @@ public class GetWords : MonoBehaviour
         {
             PhraseRecognitionSystem.Shutdown();
         }
-        if (recognizer2 != null)
-        {
-            recognizer2.Dispose();
-        }
+        
 #endif
         SceneManager.LoadScene("SelectGame");
     }

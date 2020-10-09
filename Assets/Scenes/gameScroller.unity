@@ -2111,9 +2111,9 @@ MonoBehaviour:
   record: {fileID: 1613366951}
   speech: {fileID: 1607103357}
   sample: {fileID: 917685013}
+  conInt: 2
   conLvl: 0
   uiText: {fileID: 1439266708}
-  mainTimer: 10
   newWordBtn: {fileID: 1513093257}
   diff: {fileID: 0}
 --- !u!1 &1307557723
@@ -2559,7 +2559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1439266707
 RectTransform:
   m_ObjectHideFlags: 0

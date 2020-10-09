@@ -61,7 +61,7 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         }
         else
         {
-            txt.text = "Say a longer sentence";
+            txt.text = "Say a longer sentence \n" + "Word: " + GetWords.correct;
 
         }
 
