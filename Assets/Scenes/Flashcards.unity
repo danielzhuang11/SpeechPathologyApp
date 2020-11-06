@@ -735,7 +735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &937692703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2174,10 +2174,11 @@ MonoBehaviour:
   record: {fileID: 576021724}
   speech: {fileID: 337295901}
   sample: {fileID: 230515465}
+  conInt: 2
   conLvl: 0
   uiText: {fileID: 937692703}
-  mainTimer: 10
   newWordBtn: {fileID: 1568791410}
+  diff: {fileID: 0}
 --- !u!1 &1857459809
 GameObject:
   m_ObjectHideFlags: 0
