@@ -84,15 +84,22 @@
         [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeMeasurement options:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
         [session setActive:TRUE withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
         
-        inputNode = audioEngine.inputNode;
-        
+        //inputNode = audioEngine.inputNode;
+        AVAudioInputNode *inputNode =[audioEngine inputNode];
         recognitionRequest = [[SFSpeechAudioBufferRecognitionRequest alloc] init];
         recognitionRequest.shouldReportPartialResults = NO;
         AVAudioFormat *format = [inputNode outputFormatForBus:0];
-        
+        if(format.sampleRate<=0){
+            [inputNode reset];
+            format = [[audioEngine inputNode] outputFormatForBus:0];
+		}
+        if(format.sampleRate>0){
+            [inputNode removeTapOnBus:0];  
+		
         [inputNode installTapOnBus:0 bufferSize:1024 format:format block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
             [recognitionRequest appendAudioPCMBuffer:buffer];
         }];
+        }
         [audioEngine prepare];
         NSError *error1;
         [audioEngine startAndReturnError:&error1];

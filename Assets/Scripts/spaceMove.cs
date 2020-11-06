@@ -88,6 +88,11 @@ public class spaceMove : MonoBehaviour
         }
         if (collision.collider.tag == "Coin")
         {
+            if (health < healthMax)
+            {
+                health += 1;
+                healthBar.fillAmount = health / healthMax;
+            }
             ui.transform.position = new Vector3(ui.transform.position.x, GetWords.y, 0);
             score.text = "Score: " + globalScore.coins;
             ui.SetActive(true);
@@ -96,11 +101,7 @@ public class spaceMove : MonoBehaviour
             results.text = "Press the New Word Button";
             frozen = true;
         }
-        if (collision.collider.tag == "Health" && health < healthMax)
-        {
-            health += 1;
-            healthBar.fillAmount = health / healthMax;
-        }
+        
     }
     
 }
