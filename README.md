@@ -3,6 +3,7 @@ MONKEY SEE MONKEY SAY
 A helpful educational app which focuses on kids development in areas of speech pronunciation, english language learning, and vocabulary.
 
 Features of Monkey See Monkey Say include:
+
 *3 separate game modes including flashcards, A 2D platformer, and a space scroller
 
 *Rewards based on words practiced
