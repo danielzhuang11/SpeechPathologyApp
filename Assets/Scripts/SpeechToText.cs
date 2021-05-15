@@ -3,6 +3,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 namespace TextSpeech
 {
@@ -34,13 +35,14 @@ namespace TextSpeech
             _instance = this;
         }
         #endregion
+        public TextMeshProUGUI logs;
 
         public Action<string> onResultCallback;
 
         public void Setting(string _language)
         {
 #if UNITY_EDITOR
-#elif UNITY_IPHONE
+#elif UNITY_IOS
         _TAG_SettingSpeech(_language);
 #elif UNITY_ANDROID
         AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.starseed.speechtotext.Bridge");
@@ -49,10 +51,12 @@ namespace TextSpeech
         }
         public void StartRecording(string _message = "")
         {
+
 #if UNITY_EDITOR
-#elif UNITY_IPHONE
+#elif UNITY_IOS
         _TAG_startRecording();
 #elif UNITY_ANDROID
+
         if (isShowPopupAndroid)
         {
             AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.starseed.speechtotext.Bridge");
@@ -60,6 +64,8 @@ namespace TextSpeech
         }
         else
         {
+            logs.text = "detected android";
+
             AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.starseed.speechtotext.Bridge");
             javaUnityClass.CallStatic("StartRecording");
         }
@@ -68,7 +74,7 @@ namespace TextSpeech
         public void StopRecording()
         {
 #if UNITY_EDITOR
-#elif UNITY_IPHONE
+#elif UNITY_IOS
         _TAG_stopRecording();
 #elif UNITY_ANDROID
         if (isShowPopupAndroid == false)
@@ -79,7 +85,7 @@ namespace TextSpeech
 #endif
         }
 
-#if UNITY_IPHONE
+#if UNITY_IOS
         [DllImport("__Internal")]
         private static extern void _TAG_startRecording();
 
@@ -92,9 +98,12 @@ namespace TextSpeech
 
         public void onMessage(string _message)
         {
+            logs.text = _message +" message";
+
         }
         public void onErrorMessage(string _message)
         {
+            logs.text = _message;
             Debug.Log(_message);
         }
         /** Called when recognition results are ready. */
@@ -102,6 +111,8 @@ namespace TextSpeech
         {
             if (onResultCallback != null)
                 onResultCallback(_results);
+            logs.text = _results;
+
         }
 
         #region Android STT custom

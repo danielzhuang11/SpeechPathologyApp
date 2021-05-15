@@ -44,6 +44,8 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //Play recording
         if (recording.length > 1.5 || (gameController.GetComponent<GetWords>().conInt == 0 && !DropdownFill.group.Contains("Sentences")))
         {
+            newWordBtn.SetActive(true);
+
             audioSource.clip = recording;
             audioSource.Play();
 
@@ -57,7 +59,6 @@ public class AudioRecorder : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             //thi.SetActive(false);
 
             thi.transform.position = new Vector3(thi.transform.position.x, -5000, -5000);
-            newWordBtn.SetActive(true);
         }
         else
         {

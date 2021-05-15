@@ -124,9 +124,7 @@ public class GetWords : MonoBehaviour
             sentence = false;
             record.gameObject.SetActive(false);
             //activate mobile record button
-#if !(UNITY_EDITOR || UNITY_STANDALONE)
-            speech.gameObject.SetActive(true);
-#endif
+
         }
 
 
@@ -176,13 +174,13 @@ public class GetWords : MonoBehaviour
     private void Update()
     {
 
-#if !(UNITY_EDITOR || UNITY_STANDALONE)
+#if (UNITY_ANDROID || UNITY_IOS)
         //nocheck mobile
-        if(!ToggleSwitch._isOn && updateOn && word.Length>0)
+        if (!ToggleSwitch._isOn && updateOn && word.Length>0)
         {
             newWordBtn.SetActive(true);
 
-            results.text = "Nice Job! Your audio is being played back";
+            results.text = "Nice Job!";
             globalScore.score += 1;
             globalScore.coins += 1;
             WordBase.termData.groupScore[cGrop] += 1;
@@ -210,10 +208,10 @@ public class GetWords : MonoBehaviour
             recognizer.Stop();
 
 #endif
-            results.text = "Nice Job! You said <b>" + correct + "</b>" + " correctly! " + "\n" + "Your audio is being played back";
+            results.text = "Nice Job! You said <b>" + correct;
             globalScore.score += 1;
             globalScore.coins += 1;
-#if !(UNITY_EDITOR || UNITY_STANDALONE)
+#if (UNITY_ANDROID || UNITY_IOS)
             sample.OnClickSpeaks(word);
 #endif
             newWordBtn.SetActive(true);

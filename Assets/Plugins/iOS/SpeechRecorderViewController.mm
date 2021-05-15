@@ -23,8 +23,6 @@
 
 - (id)init
 {
-	self = [super init];	
-	
 	audioEngine = [[AVAudioEngine alloc] init];
     LanguageCode = @"ko-KR";
     NSLocale *local =[[NSLocale alloc] initWithLocaleIdentifier:LanguageCode];
@@ -75,6 +73,7 @@
 // recording
 - (void)startRecording {
     if (!audioEngine.isRunning) {
+        [inputNode removeTapOnBus:0];
         if (recognitionTask) {
             [recognitionTask cancel];
             recognitionTask = nil;
@@ -84,46 +83,45 @@
         [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeMeasurement options:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
         [session setActive:TRUE withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
         
-        //inputNode = audioEngine.inputNode;
-        AVAudioInputNode *inputNode =[audioEngine inputNode];
+        inputNode = audioEngine.inputNode;
+        
         recognitionRequest = [[SFSpeechAudioBufferRecognitionRequest alloc] init];
-        recognitionRequest.shouldReportPartialResults = NO;
+        recognitionRequest.shouldReportPartialResults = YES;
+        recognitionTask =[speechRecognizer recognitionTaskWithRequest:recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error)
+        {
+            if (result) {
+                NSString *transcriptText = result.bestTranscription.formattedString;
+                NSLog(@"STARTRECORDING RESULT: %@", transcriptText);
+                if (result.isFinal) {
+                    UnitySendMessage("SpeechToText", "onResults", [transcriptText UTF8String]);
+                }
+            }
+            else {
+                [audioEngine stop];
+                recognitionTask = nil;
+                recognitionRequest = nil;
+                UnitySendMessage("SpeechToText", "onResults", "nil");
+                NSLog(@"STARTRECORDING RESULT NULL");
+            }
+        }];
+
         AVAudioFormat *format = [inputNode outputFormatForBus:0];
-        if(format.sampleRate<=0){
-            [inputNode reset];
-            format = [[audioEngine inputNode] outputFormatForBus:0];
-		}
-        if(format.sampleRate>0){
-            [inputNode removeTapOnBus:0];  
-		
+        
         [inputNode installTapOnBus:0 bufferSize:1024 format:format block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
             [recognitionRequest appendAudioPCMBuffer:buffer];
         }];
-        }
         [audioEngine prepare];
         NSError *error1;
         [audioEngine startAndReturnError:&error1];
-        NSLog(@"errorAudioEngine.description: %@", error1.description);		
+
+        if (error1.description) {
+            NSLog(@"errorAudioEngine.description: %@", error1.description);
+        }
     }
 }
 
 - (void)stopRecording {
-    if (audioEngine.isRunning) {        
-        recognitionTask =[speechRecognizer recognitionTaskWithRequest:recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error)
-		{           
-            if (result != nil) {
-                NSString *transcriptText = result.bestTranscription.formattedString;
-                UnitySendMessage("SpeechToText", "onResults", [transcriptText UTF8String]);
-                NSLog(@"STOPRECORDING RESULT: %@", transcriptText);
-            }
-            else {
-				[audioEngine stop];
-				recognitionTask = nil;
-				recognitionRequest = nil;
-                UnitySendMessage("SpeechToText", "onResults", "nil");
-                NSLog(@"STOPRECORDING RESULT NULL");
-            }
-        }];
+    if (audioEngine.isRunning) {
         [inputNode removeTapOnBus:0];
 		[audioEngine stop];
         [recognitionRequest endAudio];
