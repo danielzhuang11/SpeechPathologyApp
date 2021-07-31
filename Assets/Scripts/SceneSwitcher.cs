@@ -97,6 +97,13 @@ public class SceneSwitcher : MonoBehaviour
 
         SceneManager.LoadScene("gameScroller");
     }
+
+    public void Gototest()
+    {
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene("Flashcards - Copy");
+    }
     public void GotoSpaceScene()
     {
         Time.timeScale = 1;

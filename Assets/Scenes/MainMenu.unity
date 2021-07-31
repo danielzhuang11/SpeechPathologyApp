@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Settings: {fileID: 2094098011}
+  Instructions: {fileID: 0}
   Controls: {fileID: 331580379}
   ptsD: {fileID: 0}
 --- !u!114 &258564120
@@ -623,7 +624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38063067, y: 0.5}
   m_AnchorMax: {x: 0.59900004, y: 0.68880874}
-  m_AnchoredPosition: {x: 1.7727051, y: 1}
+  m_AnchoredPosition: {x: 0.6265564, y: 15.109001}
   m_SizeDelta: {x: -3.5454102, y: -2.28656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413023328

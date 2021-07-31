@@ -6,7 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     UnityRemoteDevice:
-      value: 5008575e5d56585a5b5a557646250f1614121d7a2a7b72642c2c1b62e1e26d3ab7e562bae13e686c
+      value: 225f4d46245b0d4902070862342649191512
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
@@ -18,7 +18,5 @@ EditorUserSettings:
   m_SemanticMergeMode: 2
   m_VCShowFailedCheckout: 1
   m_VCOverwriteFailedCheckoutAssets: 1
+  m_VCOverlayIcons: 1
   m_VCAllowAsyncUpdate: 0
-  m_AssetPipelineMode: 0
-  m_CacheServerMode: 0
-  m_CacheServers: []

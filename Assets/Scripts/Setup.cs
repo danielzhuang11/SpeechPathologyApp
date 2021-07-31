@@ -7,6 +7,8 @@ public class Setup : MonoBehaviour
 {
     public static Setup Instance;
     public GameObject Settings;
+    public GameObject Instructions;
+
     public GameObject Controls;
 
     public static string[] email;
@@ -31,10 +33,11 @@ public class Setup : MonoBehaviour
         GameObject.Find("Settings").SetActive(false);
     }
 
+
     public void OpenSettings()
     {
         Settings.SetActive(true);
-        
+
     }
     public void OpenControls()
     {

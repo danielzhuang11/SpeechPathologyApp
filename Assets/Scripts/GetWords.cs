@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Timers;
 using UnityEngine.Audio;
+using TextSpeech;
 #if UNITY_EDITOR || UNITY_STANDALONE
     using UnityEngine.Windows.Speech;
 #endif
@@ -60,84 +61,103 @@ public class GetWords : MonoBehaviour
     }
  
     
-    public void newWord()
-    {
-        
-        newWordBtn.SetActive(false);
-        //start recording for pc
+   public void newWord()
+   {
+       
+       newWordBtn.SetActive(false);
+       //start recording for pc
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if(audioSource != null)
-            audioSource.Stop();
+       if(audioSource != null)
+           audioSource.Stop();
 
-        audioSource = gameObject.AddComponent<AudioSource>();
+       audioSource = gameObject.AddComponent<AudioSource>();
 
-        audioSource.clip = Microphone.Start("", true, 10, 44100);
+       audioSource.clip = Microphone.Start("", true, 10, 44100);
 #endif
 
-        string chosen = WordBase.getRandFromCSV(group);
+       string chosen = WordBase.getRandFromCSV(group);
 
-        if (WordBase.termData.terms[chosen][1] != null)
-            StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][1], image));
-        else { image.GetComponent<Image>().sprite = card; }
-        results.text = chosen;
+       if (WordBase.termData.terms[chosen][1] != null)
+           StartCoroutine(WordBase.setImage(WordBase.termData.terms[chosen][1], image));
+       else { image.GetComponent<Image>().sprite = card; }
+       results.text = chosen;
 
 
-        cGrop = WordBase.termData.terms[chosen][0];
-        correct = chosen;
-        string[] t = new[] { correct };
+       cGrop = WordBase.termData.terms[chosen][0];
+       correct = chosen;
+       string[] t = new[] { correct };
 
 #if UNITY_EDITOR || UNITY_STANDALONE
-        
-        if (word != null && !sentence)
-        {
-            if (PlayerPrefs.HasKey("diff"))
-                conInt = PlayerPrefs.GetInt("diff");
-            if (conInt == 2)
-                conLvl = ConfidenceLevel.Medium;
-            else if (conInt == 1)
-                conLvl = ConfidenceLevel.Low;
-            if (conInt == 0)
-            {
-               
+       
+       if (word != null && !sentence)
+       {
+           if (PlayerPrefs.HasKey("diff"))
+               conInt = PlayerPrefs.GetInt("diff");
+           if (conInt == 2)
+               conLvl = ConfidenceLevel.Medium;
+           else if (conInt == 1)
+               conLvl = ConfidenceLevel.Low;
+           if (conInt == 0)
+           {
+             
 
-            }
-            else
-            {
-                recognizer = new KeywordRecognizer(t, conLvl);
-                Debug.Log(conLvl);
-                recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
-                recognizer.Start();
-            }
+           }
+           else
+           {
+               recognizer = new KeywordRecognizer(t, conLvl);
+               Debug.Log(conLvl);
+               recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
+               recognizer.Start();
+           }
 
-        }
-        if (group.Contains("Sentences") || conInt == 0)
-        {
-            sentence = true;
-            record.gameObject.SetActive(true);
-            speech.gameObject.SetActive(false);
+       }
+       if (group.Contains("Sentences") || conInt == 0)
+       {
+           sentence = true;
+           record.gameObject.SetActive(true);
+           speech.gameObject.SetActive(false);
 
-            AudioRecorder.updateChosen(chosen);
+           AudioRecorder.updateChosen(chosen);
 
-        }
-        else
-        {
-            sentence = false;
-            record.gameObject.SetActive(false);
-            //activate mobile record button
-
-        }
+       }
+       else
+       {
+           sentence = false;
+           record.gameObject.SetActive(false);
+           //activate mobile record button
+#if !(UNITY_EDITOR || UNITY_STANDALONE)
+           speech.gameObject.SetActive(true);
+#endif
+       }
 
 
 
 #endif
-        updateOn = true;
+#if !(UNITY_EDITOR || UNITY_STANDALONE)
+            if (group.Contains("Sentences"))
+       {
+           sentence = true;
+           record.gameObject.SetActive(true);
+           speech.gameObject.SetActive(false);
 
-        if (sentence == true)
-        {
-            record.gameObject.SetActive(true);
+           AudioRecorder.updateChosen(chosen);
 
-        }
-    }
+       }
+       else
+       {
+           sentence = false;
+           record.gameObject.SetActive(false);
+           speech.gameObject.SetActive(true);
+       }
+#endif
+       updateOn = true;
+
+       if (sentence == true)
+       {
+           record.gameObject.SetActive(true);
+
+       }
+   }
 #if UNITY_EDITOR || UNITY_STANDALONE
         private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
         {
