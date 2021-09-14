@@ -1,4 +1,4 @@
-MONKEY SEE MONKEY SAY
+\textbf{MONKEY SEE MONKEY SAY}
 
 A helpful educational app which focuses on kids development in areas of speech pronunciation, english language learning, and vocabulary.
 
